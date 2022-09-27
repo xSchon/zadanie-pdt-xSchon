@@ -13,3 +13,9 @@ venv.bak/
 zadanie/
 .env
 data/
+
+.log
+
+*.egg-info/
+dist/
+build/
