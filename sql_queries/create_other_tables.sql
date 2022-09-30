@@ -82,11 +82,11 @@ CREATE TABLE IF NOT EXISTS context_annotations(
 );
 
 CREATE TABLE IF NOT EXISTS annotations(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    value TEXT,
-    type TEXT,
-    probability NUMERIC(4, 3),
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id)                                      
-);
+        id BIGINT PRIMARY KEY UNIQUE NOT NULL,
+        conversation_id BIGINT,
+        value TEXT,
+        type TEXT,
+        probability NUMERIC(4, 3),
+        FOREIGN KEY (conversation_id)
+         REFERENCES conversations(id)
+    );

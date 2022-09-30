@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 
 from utils import config, utilities
 
-class Fill_authors():
+class Fill_authors:
     
     def __init__(self):
         self.TABLE_NAME = 'authors'

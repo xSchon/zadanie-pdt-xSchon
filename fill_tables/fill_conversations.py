@@ -14,7 +14,7 @@ from sqlalchemy import create_engine
 from utils import config, utilities
 
 
-class Fill_conversations():
+class Fill_conversations:
 
     def __init__(self) -> None:
         self.TABLE_NAME = 'authors'
