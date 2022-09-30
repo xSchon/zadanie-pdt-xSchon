@@ -37,7 +37,7 @@ class Fill_authors:
             f"{config.DATABASE['HOST']}:"
             f"{config.DATABASE['PORT']}/"
             f"{config.DATABASE['DBNAME']}"
-        )     
+        )  
         logging.info('DB engine connection estabilished')
         re_null = re.compile(pattern='\x00') # Dealing with UTF-8
 
