@@ -1,8 +1,10 @@
 """This file serves the purpose of holding helpful functions accessible from any other file."""
 import logging
-import psycopg2
+import warnings
+warnings.filterwarnings('ignore') # Ignore warning about usage of psycopgs at every connection
 
 import pandas as pd
+import psycopg2
 
 from utils import config
 
@@ -39,5 +41,5 @@ def run_written_query(name_of_query: str, to_dataframe: bool = False, option: st
             return pd.read_sql(query, con=conn)
 
         conn.cursor().execute(query=query)
-        logging.info(f'Query {query} finished!') 
+        logging.info(f'Query {name_of_query} finished!') 
         return None

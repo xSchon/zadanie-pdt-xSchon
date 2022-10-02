@@ -70,27 +70,27 @@ class Fill_authors:
             return updated_users_existing_ids
         
 
-        row_data = [] # Use list of rows to create DataFrame of users for easy upload to DB
+        data_rows = [] # Use list of rows to create DataFrame of users for easy upload to DB
         # Hold existing user ids in array so that you can delete duplicates
         users_existing_ids = utilities.run_written_query('SELECT id \
                                                           FROM authors', to_dataframe=True, option='from_string').id.astype('str').values  
         with gzip.open(config.USERS_PATH, 'rb') as f:
             for row_number, current_user in enumerate(f):
                 # Iterate over all records in jsonl file, load them as JSON
-                row_data.append(json.loads(current_user.decode(encoding='utf-8')))
+                data_rows.append(json.loads(current_user.decode(encoding='utf-8')))
 
                 if (row_number+1) % batch_size == 0: # Batch of users
                     # Create DataFrame with desired columns
-                    users = pd.DataFrame(row_data)                    
+                    users = pd.DataFrame(data_rows)                    
                     users_existing_ids = insert_chunk_into_users(users, users_existing_ids)
                     # Clear row data, as these data are already uploaded in the DB
-                    row_data = []
+                    data_rows = []
                     users = pd.DataFrame()
                     logging.info(f'So far processed {row_number+1} users')
 
             # Run one more time for the final rows that were not part of the last batch
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
-                users = pd.DataFrame(row_data)
+                users = pd.DataFrame(data_rows)
                 users_existing_ids = insert_chunk_into_users(users, users_existing_ids)
             
             logging.info('Upload into authors database succesful')
