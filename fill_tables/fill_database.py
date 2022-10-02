@@ -1,14 +1,13 @@
 """File to create conversations table and other tables related to it (apart from authors)."""
+import csv
+from datetime import datetime
 import gc
 import gzip
-import os 
 import json
 import logging
-import time
 
 import numpy as np
 import pandas as pd
-import psycopg2
 from sqlalchemy import create_engine
 
 from utils import config, utilities
@@ -31,11 +30,8 @@ class Fill_database:
         
     
     def fill_conversations(self, tweets : pd.DataFrame) -> None:
-        # Drop local and global duplicates
         conversations_table = tweets[['id', 'author_id', 'content', 'possibly_sensitive', 'language',
                     'source', 'retweet_count', 'reply_count', 'like_count', 'quote_count', 'created_at']].drop_duplicates(subset='id')
-        conversations_table = conversations_table[~conversations_table.id.isin(self.conversations_existing_ids)]
-        self.conversations_existing_ids = np.concatenate((self.conversations_existing_ids, conversations_table.id.values))
 
         # Add authors that are not in the database already - with null values for rows other than ID
         authors_to_add = conversations_table[~conversations_table.author_id.isin(self.users_existing_ids)][['author_id']]
@@ -71,7 +67,7 @@ class Fill_database:
 
             links_table = pd.concat([links_table, tmp_links])[list(links_table.columns)]
             # Delete links with longer than 255 char URL
-            links_table = links_table[links_table.expanded_url.apply(lambda url_len : len(url_len) < 256)]
+            links_table = links_table[links_table.expanded_url.apply(lambda url_len : len(url_len) <= 256)]
             del(layer_links, tmp_links)
 
 
@@ -102,6 +98,7 @@ class Fill_database:
             tmp_annotations = tmp_annotations.join(tweets.id).rename(columns={'id' : 'conversation_id'})
             
             annotations_table = pd.concat([annotations_table, tmp_annotations])[list(annotations_table.columns)]
+            del(layer_annotations, tmp_annotations)
 
         # to_sql does require writing ids manually
         annotations_table['id'] = [new_id for new_id in range(self.last_id_annotations+1, self.last_id_annotations+1+len(annotations_table.index))]
@@ -113,12 +110,11 @@ class Fill_database:
             if_exists="append",
             index=False
             )
-        del(annotations_table, entities_index, annotations_raw, tmp_annotations)
+        del(annotations_table, entities_index, annotations_raw)
 
     
     def fill_contexts(self, tweets : pd.DataFrame) -> None:
         contexts_raw = tweets.context_annotations.dropna()
-        annotations_index = contexts_raw.index
 
         context_annotations_table= pd.DataFrame(columns=['conversation_id', 'context_domain_id', 'context_entity_id'])
         context_entities_table = pd.DataFrame(columns=['id', 'name', 'description'])
@@ -137,6 +133,8 @@ class Fill_database:
             
             anns = ents[['id', 'conversation_id']].rename(columns={'id' : 'context_entity_id'}).join(doms[['id']].rename(columns={'id' : 'context_domain_id'}))
             context_annotations_table = pd.concat([context_annotations_table, anns])[context_annotations_table.columns].drop_duplicates()
+
+            del(ents, doms, anns, domain_entities_tmp, context_annotations)
 
         # Drop duplicates and save used ids for the future work
         context_entities_table = context_entities_table[~context_entities_table.id.isin(self.context_entities_existing_ids)]
@@ -169,24 +167,29 @@ class Fill_database:
             if_exists="append",
             index=False
             )        
+        del(context_annotations_table, context_domains_table, context_entities_table, contexts_raw)
         
 
     def fill_hashtags(self, tweets : pd.DataFrame) -> None:    
         entities_index = tweets.dropna(subset='entities').entities.index
-        hashtags_raw = pd.DataFrame(tweets.entities.dropna().to_list(), index=entities_index)
-        hashtags = hashtags_raw.hashtags.dropna()
+
+        hashtags = pd.DataFrame(tweets.entities.dropna().to_list(), index=entities_index)[['hashtags']].dropna()
         all_hashtags = pd.DataFrame(columns=['tag'])
+        hashtags_df = pd.DataFrame(hashtags.hashtags.to_list(), index=hashtags.index)
 
-        for col in pd.DataFrame(hashtags.to_list()).columns:
-            all_hashtags = pd.concat([all_hashtags, pd.DataFrame(pd.DataFrame(hashtags.to_list())[col].to_list(), index=hashtags.index)])[['tag']]
+        for col in hashtags_df.columns:
+            layer = pd.DataFrame(hashtags_df[col], index=hashtags.index).dropna()
+            layer_hashtags = pd.DataFrame(layer[col].to_list(), index=layer.index)[['tag']]
+            all_hashtags = pd.concat([all_hashtags, layer_hashtags])[['tag']]
+            del(layer, layer_hashtags)
 
-        all_hashtags = all_hashtags.dropna()
         all_hashtags = all_hashtags.join(tweets.id).rename(columns={'id' : 'conversation_id'})
-
+        
         unique_used_hashtags = all_hashtags[['tag']].drop_duplicates()
         new_hashtags = unique_used_hashtags[~unique_used_hashtags.tag.isin(self.hashtags_full_list.tag)]
         self.hashtags_full_list = pd.concat([self.hashtags_full_list, new_hashtags], ignore_index=True)
         upload_hashtags = self.hashtags_full_list[self.hashtags_full_list.tag.isin(new_hashtags.tag)]
+
         tmp = self.hashtags_full_list.copy()
         tmp['hashtag_id'] = tmp.index
         conversation_hashtags_table = all_hashtags.merge(tmp, on='tag')
@@ -210,11 +213,18 @@ class Fill_database:
             if_exists="append",
             index=False
             )       
+        
+        del(conversation_hashtags_table, all_hashtags, tmp, upload_hashtags, unique_used_hashtags, entities_index, hashtags_df)
 
 
     def fill_all_tables(self, batch_size: int = 100000):
         data_rows = []
-        start_time = time.time()
+        start_time = datetime.now()
+
+        TIME_TRACKER_FILE_PATH = 'time_tracker.csv'
+        with open(TIME_TRACKER_FILE_PATH, 'w'):
+            #clear file
+            pass
         
         self.last_id_link = utilities.run_written_query('SELECT max(id) FROM links', to_dataframe=True, option='from_string')['max'].iloc[0]
         if self.last_id_link is None:
@@ -236,6 +246,7 @@ class Fill_database:
         self.context_domains_existing_ids = utilities.run_written_query('SELECT id FROM context_domains;', to_dataframe=True, option='from_string').id.astype('str').values 
         self.hashtags_full_list = utilities.run_written_query('SELECT tag FROM hashtags;', to_dataframe=True, option='from_string')
 
+        last_time = datetime.now()
         with gzip.open(config.TWEETS_PATH, 'rb') as f:
             for row_number, current_tweet in enumerate(f):
                 data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
@@ -248,8 +259,10 @@ class Fill_database:
                     tweets[metrics.columns] = metrics
                     tweets.rename(columns={'text' : 'content',
                                         'lang' : 'language',
-                                        }, inplace=True)                    
-
+                                        }, inplace=True)              
+                    # Drop local and global duplicates
+                    tweets = tweets[~tweets.id.isin(self.conversations_existing_ids)]
+                    self.conversations_existing_ids = np.concatenate((self.conversations_existing_ids, tweets.id.values))       
                     
                     self.fill_conversations(tweets)
                     self.fill_links(tweets)
@@ -262,6 +275,16 @@ class Fill_database:
                     del(metrics)
                     del(tweets)
                     gc.collect()   
+
+                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                        writer = csv.writer(tt)
+                        since_last_time = (datetime.now()-last_time).seconds
+                        since_start = (datetime.now()-start_time).seconds
+                        with open('time_tracker.csv', 'a') as tt:
+                            writer = csv.writer(tt, delimiter=';')
+                            writer.writerow([last_time.isoformat(), f"{str(since_last_time//60)}:{str(since_last_time % 60)}", f"{str(since_start//60)}:{str(since_start % 60)}"])
+
+                        last_time = datetime.now()
     
 
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
@@ -270,16 +293,30 @@ class Fill_database:
                 tweets[metrics.columns] = metrics
                 tweets.rename(columns={'text' : 'content',
                                     'lang' : 'language',
-                                    }, inplace=True)                    
+                                    }, inplace=True)             
+
+                # Drop local and global duplicates
+                tweets = tweets[~tweets.id.isin(self.conversations_existing_ids)]
+                self.conversations_existing_ids = np.concatenate((self.conversations_existing_ids, tweets.id.values)) 
+
                 self.fill_conversations(tweets)
                 self.fill_links(tweets)
                 self.fill_annotations(tweets)
                 self.fill_contexts(tweets)
                 self.fill_hashtags(tweets)
 
-        logging.info('Upload into database succesful')
-        logging.info(f'Upload time was: {time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - start_time))}')
-        self.engine.dispose()
+                with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                    writer = csv.writer(tt)
+                    since_last_time = (datetime.now()-last_time).seconds
+                    since_start = (datetime.now()-start_time).seconds
+                    with open('time_tracker.csv', 'a') as tt:
+                        writer = csv.writer(tt, delimiter=';')
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60)}:{str(since_last_time % 60)}", f"{str(since_start//60)}:{str(since_start % 60)}"])
 
+                    last_time = datetime.now()
+
+
+        logging.info('Upload into database succesful')
+        self.engine.dispose()
 
 

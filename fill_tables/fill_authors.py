@@ -8,7 +8,6 @@ import time
 
 import numpy as np
 import pandas as pd
-import psycopg2
 from sqlalchemy import create_engine
 
 from utils import config, utilities
