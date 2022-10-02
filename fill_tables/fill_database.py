@@ -1,10 +1,9 @@
 """File to create conversations table and other tables related to it (apart from authors)."""
-from distutils.command.upload import upload
+import gc
 import gzip
 import os 
 import json
 import logging
-import re
 import time
 
 import numpy as np
@@ -56,14 +55,14 @@ class Fill_database:
                 if_exists="append",
                 index=False
             )
-           
+        del(conversations_table, authors_to_add)
+
 
     def fill_links(self, tweets : pd.DataFrame) -> None:
         links_table = pd.DataFrame(columns=['conversation_id', 'expanded_url', 'title', 'description'])
 
         entities_index = tweets.dropna(subset='entities').entities.index
         links_raw = pd.DataFrame(tweets.dropna(subset='entities').entities.to_list(), index=entities_index).dropna(subset='urls').urls
-
 
         for layer in range(links_raw.apply(lambda x : len(x)).max()):
             layer_links = links_raw.apply(lambda x : x[layer] if (len(x) > layer) else None).dropna()
@@ -73,13 +72,12 @@ class Fill_database:
             links_table = pd.concat([links_table, tmp_links])[list(links_table.columns)]
             # Delete links with longer than 255 char URL
             links_table = links_table[links_table.expanded_url.apply(lambda url_len : len(url_len) < 256)]
+            del(layer_links, tmp_links)
 
 
         # to_sql does require writing ids manually
-        biggest_id = utilities.run_written_query('SELECT max(id) FROM links', to_dataframe=True, option='from_string')['max'].iloc[0]
-        if biggest_id is None:
-            biggest_id = 0
-        links_table['id'] = [new_id for new_id in range(biggest_id+1, biggest_id+1+len(links_table.index))]
+        links_table['id'] = [new_id for new_id in range(self.last_id_link+1, self.last_id_link+1+len(links_table.index))]
+        self.last_id_link = self.last_id_link+1+len(links_table.index)
 
         links_table.rename(columns={'expanded_url' : 'url'}, inplace=True)
         links_table.to_sql(
@@ -88,6 +86,7 @@ class Fill_database:
             if_exists="append",
             index=False
             ) 
+        del(links_table, entities_index, links_raw)
 
     
     def fill_annotations(self, tweets : pd.DataFrame) -> None:
@@ -105,10 +104,8 @@ class Fill_database:
             annotations_table = pd.concat([annotations_table, tmp_annotations])[list(annotations_table.columns)]
 
         # to_sql does require writing ids manually
-        biggest_id = utilities.run_written_query('SELECT max(id) FROM annotations', to_dataframe=True, option='from_string')['max'].iloc[0]
-        if biggest_id is None:
-            biggest_id = 0
-        annotations_table['id'] = [new_id for new_id in range(biggest_id+1, biggest_id+1+len(annotations_table.index))]
+        annotations_table['id'] = [new_id for new_id in range(self.last_id_annotations+1, self.last_id_annotations+1+len(annotations_table.index))]
+        self.last_id_annotations = self.last_id_annotations+1+len(annotations_table.index)
 
         annotations_table.to_sql(
             'annotations',
@@ -116,6 +113,7 @@ class Fill_database:
             if_exists="append",
             index=False
             )
+        del(annotations_table, entities_index, annotations_raw, tmp_annotations)
 
     
     def fill_contexts(self, tweets : pd.DataFrame) -> None:
@@ -162,10 +160,8 @@ class Fill_database:
             )        
 
         # to_sql does require writing ids manually
-        biggest_id = utilities.run_written_query('SELECT max(id) FROM context_annotations', to_dataframe=True, option='from_string')['max'].iloc[0]
-        if biggest_id is None:
-            biggest_id = 0
-        context_annotations_table['id'] = [new_id for new_id in range(biggest_id+1, biggest_id+1+len(context_annotations_table.index))]
+        context_annotations_table['id'] = [new_id for new_id in range(self.last_id_context_annotations+1, self.last_id_context_annotations+1+len(context_annotations_table.index))]
+        self.last_id_context_annotations = self.last_id_context_annotations+1+len(context_annotations_table.index)
 
         context_annotations_table.to_sql(
             'context_annotations',
@@ -173,7 +169,7 @@ class Fill_database:
             if_exists="append",
             index=False
             )        
-
+        
 
     def fill_hashtags(self, tweets : pd.DataFrame) -> None:    
         entities_index = tweets.dropna(subset='entities').entities.index
@@ -205,10 +201,8 @@ class Fill_database:
 
         conversation_hashtags_table = conversation_hashtags_table[['conversation_id', 'hashtag_id']]
         # to_sql does require writing ids manually
-        biggest_id = utilities.run_written_query('SELECT max(id) FROM conversation_hashtags', to_dataframe=True, option='from_string')['max'].iloc[0]
-        if biggest_id is None:
-            biggest_id = 0
-        conversation_hashtags_table['id'] = [new_id for new_id in range(biggest_id+1, biggest_id+1+len(conversation_hashtags_table.index))]
+        conversation_hashtags_table['id'] = [new_id for new_id in range(self.last_id_hashtags+1, self.last_id_hashtags+1+len(conversation_hashtags_table.index))]
+        self.last_id_hashtags = self.last_id_hashtags+1+len(conversation_hashtags_table.index)  
 
         conversation_hashtags_table.to_sql(
             'conversation_hashtags',
@@ -220,6 +214,21 @@ class Fill_database:
 
     def fill_all_tables(self, batch_size: int = 100000):
         data_rows = []
+        start_time = time.time()
+        
+        self.last_id_link = utilities.run_written_query('SELECT max(id) FROM links', to_dataframe=True, option='from_string')['max'].iloc[0]
+        if self.last_id_link is None:
+            self.last_id_link = 0
+        self.last_id_annotations = utilities.run_written_query('SELECT max(id) FROM annotations', to_dataframe=True, option='from_string')['max'].iloc[0]
+        if self.last_id_annotations is None:
+            self.last_id_annotations = 0
+        self.last_id_context_annotations = utilities.run_written_query('SELECT max(id) FROM annotations', to_dataframe=True, option='from_string')['max'].iloc[0]
+        if self.last_id_context_annotations is None:
+            self.last_id_context_annotations = 0
+        self.last_id_hashtags = utilities.run_written_query('SELECT max(id) FROM conversation_hashtags', to_dataframe=True, option='from_string')['max'].iloc[0]
+        if self.last_id_hashtags is None:
+            self.last_id_hashtags = 0
+
         # 5 arrays helping to get information about used parts of the program 
         self.conversations_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
         self.users_existing_ids = utilities.run_written_query('SELECT id FROM authors;', to_dataframe=True, option='from_string').id.astype('str').values 
@@ -230,8 +239,9 @@ class Fill_database:
         with gzip.open(config.TWEETS_PATH, 'rb') as f:
             for row_number, current_tweet in enumerate(f):
                 data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
+
                 if (row_number+1) % batch_size == 0:
-                    print(row_number+1)
+                    logging.info(row_number+1)
                     
                     tweets = pd.DataFrame(data_rows)
                     metrics = pd.DataFrame(tweets.public_metrics.to_list())
@@ -241,19 +251,35 @@ class Fill_database:
                                         }, inplace=True)                    
 
                     
-                   # self.fill_conversations(tweets)
-                    logging.info('Conversations filled')
-                #    self.fill_links(tweets)
-                    logging.info('Links filled')
-                 #   self.fill_annotations(tweets)
-                    logging.info('Annotations filled')
-                #    self.fill_contexts(tweets)
-                    logging.info('Contexts filled')      
-                    self.fill_hashtags(tweets)
-                    logging.info('Hashtags filled')        
-                    break
+                    self.fill_conversations(tweets)
+                    self.fill_links(tweets)
+                    self.fill_annotations(tweets)
+                    self.fill_contexts(tweets)
+                    self.fill_hashtags(tweets)   
+                    
 
+                    data_rows = []
+                    del(metrics)
+                    del(tweets)
+                    gc.collect()   
+    
 
+            if (row_number+1) % batch_size != 0: # Was not precisely divided by size
+                tweets = pd.DataFrame(data_rows)
+                metrics = pd.DataFrame(tweets.public_metrics.to_list())
+                tweets[metrics.columns] = metrics
+                tweets.rename(columns={'text' : 'content',
+                                    'lang' : 'language',
+                                    }, inplace=True)                    
+                self.fill_conversations(tweets)
+                self.fill_links(tweets)
+                self.fill_annotations(tweets)
+                self.fill_contexts(tweets)
+                self.fill_hashtags(tweets)
+
+        logging.info('Upload into database succesful')
+        logging.info(f'Upload time was: {time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - start_time))}')
+        self.engine.dispose()
 
 
 

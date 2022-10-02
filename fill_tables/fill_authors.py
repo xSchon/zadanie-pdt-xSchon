@@ -97,3 +97,7 @@ class Fill_authors:
             logging.info(f'Upload time was: {time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - start_time))}')
 
         engine.dispose()
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        for file in self.files:
+            os.unlink(file)

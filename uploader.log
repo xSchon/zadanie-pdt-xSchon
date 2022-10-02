@@ -1,94 +1,129 @@
 config.py - initialize_logger - INFO - Logger succesfully initialized
 utilities.py - run_written_query - INFO - Connection estabilished
-utilities.py - run_written_query - INFO - Query CREATE TABLE IF NOT EXISTS conversations(
-  id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-  author_id BIGINT,
-  content TEXT,
-  possibly_sensitive BOOLEAN,
-  language VARCHAR(3),
-  source TEXT,
-  retweet_count INT NOT NULL,
-  reply_count INT NOT NULL,
-  like_count INT NOT NULL,
-  quote_count INT NOT NULL,
-  created_at TIMESTAMPTZ,
-
-  FOREIGN KEY (author_id)
-    REFERENCES authors(id)
-);
-
-CREATE TABLE IF NOT EXISTS hashtags(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    tag TEXT UNIQUE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS conversation_hashtags(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    hashtag_id BIGINT,
-
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id),
-    FOREIGN KEY (hashtag_id)
-     REFERENCES hashtags(id)
-);
-
-CREATE TABLE IF NOT EXISTS conversation_references(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    parent_id BIGINT,
-    type VARCHAR (20),
-
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id),
-    FOREIGN KEY (parent_id)
-     REFERENCES conversations(id)
-
-
-);
-
-CREATE TABLE IF NOT EXISTS links(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    value TEXT,
-    type TEXT,
-    probability NUMERIC(4, 3),
-
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id)
-);
-
-CREATE TABLE IF NOT EXISTS context_domains(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    name VARCHAR(255),
-    description TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS context_entities(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    name VARCHAR(255),
-    description TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS context_annotations(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    context_domain_id BIGINT,
-    context_entity_id BIGINT,
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id),
-    FOREIGN KEY (context_domain_id)
-     REFERENCES context_domains(id),
-    FOREIGN KEY (context_entity_id)
-     REFERENCES context_entities(id)
-);
-
-CREATE TABLE IF NOT EXISTS annotations(
-    id BIGINT PRIMARY KEY UNIQUE NOT NULL,
-    conversation_id BIGINT,
-    value TEXT,
-    type TEXT,
-    probability NUMERIC(4, 3),
-    FOREIGN KEY (conversation_id)
-     REFERENCES conversations(id)                                      
-); finished!
+utilities.py - run_written_query - INFO - Query create_authors.sql finished!
+fill_authors.py - fill_table - INFO - DB engine connection estabilished
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_authors.py - fill_table - INFO - So far processed 100000 users
+fill_authors.py - fill_table - INFO - So far processed 200000 users
+fill_authors.py - fill_table - INFO - So far processed 300000 users
+fill_authors.py - fill_table - INFO - So far processed 400000 users
+fill_authors.py - fill_table - INFO - So far processed 500000 users
+fill_authors.py - fill_table - INFO - So far processed 600000 users
+fill_authors.py - fill_table - INFO - So far processed 700000 users
+fill_authors.py - fill_table - INFO - So far processed 800000 users
+fill_authors.py - fill_table - INFO - So far processed 900000 users
+fill_authors.py - fill_table - INFO - So far processed 1000000 users
+fill_authors.py - fill_table - INFO - So far processed 1100000 users
+fill_authors.py - fill_table - INFO - So far processed 1200000 users
+fill_authors.py - fill_table - INFO - So far processed 1300000 users
+fill_authors.py - fill_table - INFO - So far processed 1400000 users
+fill_authors.py - fill_table - INFO - So far processed 1500000 users
+fill_authors.py - fill_table - INFO - So far processed 1600000 users
+fill_authors.py - fill_table - INFO - So far processed 1700000 users
+fill_authors.py - fill_table - INFO - So far processed 1800000 users
+fill_authors.py - fill_table - INFO - So far processed 1900000 users
+fill_authors.py - fill_table - INFO - So far processed 2000000 users
+fill_authors.py - fill_table - INFO - So far processed 2100000 users
+fill_authors.py - fill_table - INFO - So far processed 2200000 users
+fill_authors.py - fill_table - INFO - So far processed 2300000 users
+fill_authors.py - fill_table - INFO - So far processed 2400000 users
+fill_authors.py - fill_table - INFO - So far processed 2500000 users
+fill_authors.py - fill_table - INFO - So far processed 2600000 users
+fill_authors.py - fill_table - INFO - So far processed 2700000 users
+fill_authors.py - fill_table - INFO - So far processed 2800000 users
+fill_authors.py - fill_table - INFO - So far processed 2900000 users
+fill_authors.py - fill_table - INFO - So far processed 3000000 users
+fill_authors.py - fill_table - INFO - So far processed 3100000 users
+fill_authors.py - fill_table - INFO - So far processed 3200000 users
+fill_authors.py - fill_table - INFO - So far processed 3300000 users
+fill_authors.py - fill_table - INFO - So far processed 3400000 users
+fill_authors.py - fill_table - INFO - So far processed 3500000 users
+fill_authors.py - fill_table - INFO - So far processed 3600000 users
+fill_authors.py - fill_table - INFO - So far processed 3700000 users
+fill_authors.py - fill_table - INFO - So far processed 3800000 users
+fill_authors.py - fill_table - INFO - So far processed 3900000 users
+fill_authors.py - fill_table - INFO - So far processed 4000000 users
+fill_authors.py - fill_table - INFO - So far processed 4100000 users
+fill_authors.py - fill_table - INFO - So far processed 4200000 users
+fill_authors.py - fill_table - INFO - So far processed 4300000 users
+fill_authors.py - fill_table - INFO - So far processed 4400000 users
+fill_authors.py - fill_table - INFO - So far processed 4500000 users
+fill_authors.py - fill_table - INFO - So far processed 4600000 users
+fill_authors.py - fill_table - INFO - So far processed 4700000 users
+fill_authors.py - fill_table - INFO - So far processed 4800000 users
+fill_authors.py - fill_table - INFO - So far processed 4900000 users
+fill_authors.py - fill_table - INFO - So far processed 5000000 users
+fill_authors.py - fill_table - INFO - So far processed 5100000 users
+fill_authors.py - fill_table - INFO - So far processed 5200000 users
+fill_authors.py - fill_table - INFO - So far processed 5300000 users
+fill_authors.py - fill_table - INFO - So far processed 5400000 users
+fill_authors.py - fill_table - INFO - So far processed 5500000 users
+fill_authors.py - fill_table - INFO - So far processed 5600000 users
+fill_authors.py - fill_table - INFO - So far processed 5700000 users
+fill_authors.py - fill_table - INFO - So far processed 5800000 users
+fill_authors.py - fill_table - INFO - So far processed 5900000 users
+fill_authors.py - fill_table - INFO - So far processed 6000000 users
+fill_authors.py - fill_table - INFO - So far processed 6100000 users
+fill_authors.py - fill_table - INFO - So far processed 6200000 users
+fill_authors.py - fill_table - INFO - So far processed 6300000 users
+fill_authors.py - fill_table - INFO - So far processed 6400000 users
+fill_authors.py - fill_table - INFO - So far processed 6500000 users
+fill_authors.py - fill_table - INFO - So far processed 6600000 users
+fill_authors.py - fill_table - INFO - Upload into authors database succesful
+fill_authors.py - fill_table - INFO - Upload time was: 00h 05m 45s
+utilities.py - run_written_query - INFO - Connection estabilished
+main.py - main - INFO - There is 5871810 authors in the DB
+utilities.py - run_written_query - INFO - Connection estabilished
+utilities.py - run_written_query - INFO - Query create_other_tables.sql finished!
+utilities.py - run_written_query - INFO - Connection estabilished
+utilities.py - run_written_query - INFO - Connection estabilished
+utilities.py - run_written_query - INFO - Connection estabilished
+utilities.py - run_written_query - INFO - Connection estabilished
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - 100000
+fill_database.py - fill_all_tables - INFO - Conversations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Links filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Annotations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Contexts filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Hashtags filled
+fill_database.py - fill_all_tables - INFO - 200000
+fill_database.py - fill_all_tables - INFO - Conversations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Links filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Annotations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Contexts filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Hashtags filled
+fill_database.py - fill_all_tables - INFO - 300000
+fill_database.py - fill_all_tables - INFO - Conversations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Links filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Annotations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Contexts filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Hashtags filled
+fill_database.py - fill_all_tables - INFO - 400000
+fill_database.py - fill_all_tables - INFO - Conversations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Links filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Annotations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Contexts filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Hashtags filled
+fill_database.py - fill_all_tables - INFO - 500000
+fill_database.py - fill_all_tables - INFO - Conversations filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Links filled
+utilities.py - run_written_query - INFO - Connection estabilished
+fill_database.py - fill_all_tables - INFO - Annotations filled
+utilities.py - run_written_query - INFO - Connection estabilished
