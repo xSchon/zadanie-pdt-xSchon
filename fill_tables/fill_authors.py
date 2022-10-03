@@ -1,10 +1,11 @@
 """File to create and fill authors table based on json file of twitter users."""
+import csv
+from datetime import datetime
 import gzip
 import os 
 import json
 import logging
 import re
-import time
 
 import numpy as np
 import pandas as pd
@@ -28,7 +29,6 @@ class Fill_authors:
             batch_size (int): Default 100 000. 
                 Set how many records to process and upload to database at once.
         """
-        start_time = time.time()
         # Create engine for insert into the database
         engine = create_engine(
             f"postgresql://{config.DATABASE['USER']}:"
@@ -37,6 +37,13 @@ class Fill_authors:
             f"{config.DATABASE['PORT']}/"
             f"{config.DATABASE['DBNAME']}"
         )  
+        start_time = datetime.now()
+
+        TIME_TRACKER_FILE_PATH = 'time_tracker_authors_filling.csv'
+        with open(TIME_TRACKER_FILE_PATH, 'w'):
+            #clear file
+            pass
+
         logging.info('DB engine connection estabilished')
         re_null = re.compile(pattern='\x00') # Dealing with UTF-8
 
@@ -68,7 +75,7 @@ class Fill_authors:
             ) 
             return updated_users_existing_ids
         
-
+        last_time = datetime.now()
         data_rows = [] # Use list of rows to create DataFrame of users for easy upload to DB
         # Hold existing user ids in array so that you can delete duplicates
         users_existing_ids = utilities.run_written_query('SELECT id \
@@ -87,13 +94,31 @@ class Fill_authors:
                     users = pd.DataFrame()
                     logging.info(f'So far processed {row_number+1} users')
 
+                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                        writer = csv.writer(tt)
+                        since_last_time = (datetime.now()-last_time).seconds
+                        since_start = (datetime.now()-start_time).seconds
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+
+                        last_time = datetime.now()
+                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+
             # Run one more time for the final rows that were not part of the last batch
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
                 users = pd.DataFrame(data_rows)
                 users_existing_ids = insert_chunk_into_users(users, users_existing_ids)
-            
+                with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                        writer = csv.writer(tt)
+                        since_last_time = (datetime.now()-last_time).seconds
+                        since_start = (datetime.now()-start_time).seconds
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+
+                        last_time = datetime.now()
+                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+
             logging.info('Upload into authors database succesful')
-            logging.info(f'Upload time was: {time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - start_time))}')
 
         engine.dispose()
 

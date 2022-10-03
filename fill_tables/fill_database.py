@@ -67,7 +67,7 @@ class Fill_database:
             links_table = pd.concat([links_table, lnks])[links_table.columns]
 
         # Drop links longer than 255 characters
-        links_table = links_table[links_table.expanded_url.str.len() < 256]
+        links_table = links_table[links_table.expanded_url.str.len() <= 256]
         links_table = links_table.join(tweets[['id']])
         links_table.rename(columns={'expanded_url' : 'url', 'id' : 'conversation_id'}, inplace=True)
 
@@ -165,8 +165,7 @@ class Fill_database:
             if_exists="append",
             index=False
             )      
-        
-        
+             
 
     def fill_hashtags(self, tweets : pd.DataFrame) -> None:    
         entities_index = tweets.dropna(subset='entities').entities.index
@@ -272,13 +271,11 @@ class Fill_database:
                         writer = csv.writer(tt)
                         since_last_time = (datetime.now()-last_time).seconds
                         since_start = (datetime.now()-start_time).seconds
-                        with open('time_tracker.csv', 'a') as tt:
-                            writer = csv.writer(tt, delimiter=';')
-                            writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                         f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                         last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60)}:{str(since_start % 60)}")
+                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
     
 
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
@@ -303,13 +300,14 @@ class Fill_database:
                     writer = csv.writer(tt)
                     since_last_time = (datetime.now()-last_time).seconds
                     since_start = (datetime.now()-start_time).seconds
-                    with open('time_tracker.csv', 'a') as tt:
-                        writer = csv.writer(tt, delimiter=';')
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                    writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
                                          f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                     last_time = datetime.now()
-
+                    logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
 
         logging.info('Upload into database succesful')
+
+        
+
         self.engine.dispose()
