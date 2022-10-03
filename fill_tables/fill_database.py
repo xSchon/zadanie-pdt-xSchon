@@ -51,25 +51,25 @@ class Fill_database:
                 if_exists="append",
                 index=False
             )
-        #del(conversations_table, authors_to_add)
 
 
     def fill_links(self, tweets : pd.DataFrame) -> None:
-        links_table = pd.DataFrame(columns=['conversation_id', 'expanded_url', 'title', 'description'])
+        links_table = pd.DataFrame(columns=['expanded_url', 'title', 'description'])
 
         entities_index = tweets.dropna(subset='entities').entities.index
-        links_raw = pd.DataFrame(tweets.dropna(subset='entities').entities.to_list(), index=entities_index).dropna(subset='urls').urls
+        links = pd.DataFrame(tweets.entities.dropna().to_list(), index=entities_index)[['urls']].dropna()
+        links_df = pd.DataFrame(links.urls.to_list(), index=links.index)
 
-        for layer in range(links_raw.apply(lambda x : len(x)).max()):
-            layer_links = links_raw.apply(lambda x : x[layer] if (len(x) > layer) else None).dropna()
-            tmp_links = pd.DataFrame(layer_links.to_list(), index=layer_links.index)
-            tmp_links = tmp_links.join(tweets.id).rename(columns={'id' : 'conversation_id'})
+        for col in links_df.columns:
+            layer = pd.DataFrame(links_df[col], index=links.index).dropna()
+            lnks = pd.DataFrame(layer[col].to_list(), index=layer.index)
+            
+            links_table = pd.concat([links_table, lnks])[links_table.columns]
 
-            links_table = pd.concat([links_table, tmp_links])[list(links_table.columns)]
-            # #delete links with longer than 255 char URL
-            links_table = links_table[links_table.expanded_url.apply(lambda url_len : len(url_len) <= 256)]
-            #del(layer_links, tmp_links)
-
+        # Drop links longer than 255 characters
+        links_table = links_table[links_table.expanded_url.str.len() < 256]
+        links_table = links_table.join(tweets[['id']])
+        links_table.rename(columns={'expanded_url' : 'url', 'id' : 'conversation_id'}, inplace=True)
 
         # to_sql does require writing ids manually
         links_table['id'] = [new_id for new_id in range(self.last_id_link+1, self.last_id_link+1+len(links_table.index))]
@@ -82,7 +82,6 @@ class Fill_database:
             if_exists="append",
             index=False
             ) 
-        #del(links_table, entities_index, links_raw)
 
     
     def fill_annotations(self, tweets : pd.DataFrame) -> None:
@@ -98,7 +97,7 @@ class Fill_database:
             tmp_annotations = tmp_annotations.join(tweets.id).rename(columns={'id' : 'conversation_id'})
             
             annotations_table = pd.concat([annotations_table, tmp_annotations])[list(annotations_table.columns)]
-            #del(layer_annotations, tmp_annotations)
+            
 
         # to_sql does require writing ids manually
         annotations_table['id'] = [new_id for new_id in range(self.last_id_annotations+1, self.last_id_annotations+1+len(annotations_table.index))]
@@ -110,7 +109,6 @@ class Fill_database:
             if_exists="append",
             index=False
             )
-        #del(annotations_table, entities_index, annotations_raw)
 
     
     def fill_contexts(self, tweets : pd.DataFrame) -> None:
@@ -132,22 +130,11 @@ class Fill_database:
             context_annotations_table = pd.concat([context_annotations_table, anns])
             context_entities_table = pd.concat([context_entities_table, ents]).drop_duplicates()
             context_domains_table = pd.concat([context_domains_table, doms]).drop_duplicates()
-            #del(layer, doms, ents, anns)
+            
 
         context_annotations_table = context_annotations_table.join(tweets[['id']])
         context_annotations_table.rename(columns={'id' : 'conversation_id', 'id_con_domain' : 'context_domain_id', 'id_con_entit' : 'context_entity_id'},inplace=True)
-        context_annotations_table = context_annotations_table.drop_duplicates()
-        # to_sql does require writing ids manually
-        context_annotations_table['id'] = [new_id for new_id in range(self.last_id_context_annotations+1, self.last_id_context_annotations+1+len(context_annotations_table.index))]
-        self.last_id_context_annotations = self.last_id_context_annotations+1+len(context_annotations_table.index)
-
-        context_annotations_table.to_sql(
-            'context_annotations',
-            self.engine,
-            if_exists="append",
-            index=False
-            )        
-
+          
         # Drop duplicates and save used ids for the future work
         context_entities_table = context_entities_table[~context_entities_table.id.isin(self.context_entities_existing_ids)]
         context_domains_table = context_domains_table[~context_domains_table.id.isin(self.context_domains_existing_ids)]
@@ -168,8 +155,17 @@ class Fill_database:
             index=False
             )        
 
+        # to_sql does require writing ids manually
+        context_annotations_table['id'] = [new_id for new_id in range(self.last_id_context_annotations+1, self.last_id_context_annotations+1+len(context_annotations_table.index))]
+        self.last_id_context_annotations = self.last_id_context_annotations+1+len(context_annotations_table.index)
+
+        context_annotations_table.to_sql(
+            'context_annotations',
+            self.engine,
+            if_exists="append",
+            index=False
+            )      
         
-        #del(context_annotations_table, context_domains_table, context_entities_table, contexts_raw)
         
 
     def fill_hashtags(self, tweets : pd.DataFrame) -> None:    
@@ -183,7 +179,6 @@ class Fill_database:
             layer = pd.DataFrame(hashtags_df[col], index=hashtags.index).dropna()
             layer_hashtags = pd.DataFrame(layer[col].to_list(), index=layer.index)[['tag']]
             all_hashtags = pd.concat([all_hashtags, layer_hashtags])[['tag']]
-            #del(layer, layer_hashtags)
 
         all_hashtags = all_hashtags.join(tweets.id).rename(columns={'id' : 'conversation_id'})
         
@@ -215,15 +210,13 @@ class Fill_database:
             if_exists="append",
             index=False
             )       
-        
-        #del(conversation_hashtags_table, all_hashtags, tmp, upload_hashtags, unique_used_hashtags, entities_index, hashtags_df)
 
 
     def fill_all_tables(self, batch_size: int = 100000):
         data_rows = []
         start_time = datetime.now()
 
-        TIME_TRACKER_FILE_PATH = 'time_tracker.csv'
+        TIME_TRACKER_FILE_PATH = 'time_tracker_main_filling.csv'
         with open(TIME_TRACKER_FILE_PATH, 'w'):
             #clear file
             pass
@@ -273,8 +266,6 @@ class Fill_database:
                     
 
                     data_rows = []
-                    #del(metrics)
-                    #del(tweets)
                     gc.collect()   
 
                     with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
@@ -283,7 +274,8 @@ class Fill_database:
                         since_start = (datetime.now()-start_time).seconds
                         with open('time_tracker.csv', 'a') as tt:
                             writer = csv.writer(tt, delimiter=';')
-                            writer.writerow([last_time.isoformat(), f"{str(since_last_time//60)}:{str(since_last_time % 60)}", f"{str(since_start//60)}:{str(since_start % 60)}"])
+                            writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                         f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                         last_time = datetime.now()
                         logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60)}:{str(since_start % 60)}")
@@ -312,8 +304,9 @@ class Fill_database:
                     since_last_time = (datetime.now()-last_time).seconds
                     since_start = (datetime.now()-start_time).seconds
                     with open('time_tracker.csv', 'a') as tt:
-                        writer = csv.writer(tt, #delimiter=';')
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60)}:{str(since_last_time % 60)}", f"{str(since_start//60)}:{str(since_start % 60)}"])
+                        writer = csv.writer(tt, delimiter=';')
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                         f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                     last_time = datetime.now()
 
