@@ -211,6 +211,33 @@ class Fill_database:
             )       
 
 
+    def fill_conversations(self, tweets : pd.DataFrame) -> None:
+        refs = tweets.dropna(subset='referenced_tweets')[['id', 'referenced_tweets']].dropna(subset='referenced_tweets')
+        conversation_references_table = pd.DataFrame(columns=['conversation_id', 'parent_id', 'type'])
+
+        for layer in range(refs.referenced_tweets.apply(lambda x : len(x)).max()):
+            # Select all references from given layer and find tweets they reffer to
+            layer_references = refs.referenced_tweets.apply(lambda x : x[layer] if(len(x) > layer) else None).dropna()
+            conv_refs = pd.DataFrame(layer_references.to_list(), index=layer_references.index)
+            conv_refs.rename(columns={'id' : 'parent_id'}, inplace=True)
+            conv_refs = (conv_refs.join(refs.id).rename(columns={'id' : 'conversation_id'}))
+
+            conversation_references_table = pd.concat([conversation_references_table, conv_refs])
+
+        conversation_references_table = conversation_references_table[conversation_references_table.parent_id.isin(self.parents_existing_ids)]
+        
+        # to_sql does require writing ids manually
+        conversation_references_table['id'] = [new_id for new_id in range(self.last_id_references+1, self.last_id_references+1+len(conversation_references_table.index))]
+        self.last_id_link = self.last_id_link+1+len(conversation_references_table.index)
+
+        conversation_references_table.to_sql(
+            'conversation_references',
+            self.engine,
+            if_exists="append",
+            index=False
+            ) 
+
+
     def fill_all_tables(self, batch_size: int = 100000):
         data_rows = []
         start_time = datetime.now()
@@ -234,7 +261,7 @@ class Fill_database:
             self.last_id_hashtags = 0
 
         # 5 arrays helping to get information about used parts of the program 
-        self.conversations_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
+        conversations_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
         self.users_existing_ids = utilities.run_written_query('SELECT id FROM authors;', to_dataframe=True, option='from_string').id.astype('str').values 
         self.context_entities_existing_ids = utilities.run_written_query('SELECT id FROM context_entities;', to_dataframe=True, option='from_string').id.astype('str').values 
         self.context_domains_existing_ids = utilities.run_written_query('SELECT id FROM context_domains;', to_dataframe=True, option='from_string').id.astype('str').values 
@@ -254,8 +281,8 @@ class Fill_database:
                                         }, inplace=True)              
                     # Drop local and global duplicates
                     tweets = tweets.drop_duplicates(subset='id')
-                    tweets = tweets[~tweets.id.isin(self.conversations_existing_ids)]
-                    self.conversations_existing_ids = np.concatenate((self.conversations_existing_ids, tweets.id.values))       
+                    tweets = tweets[~tweets.id.isin(conversations_existing_ids)]
+                    conversations_existing_ids = np.concatenate((conversations_existing_ids, tweets.id.values))       
                     
                     self.fill_conversations(tweets)
                     self.fill_links(tweets)
@@ -287,8 +314,8 @@ class Fill_database:
                                     }, inplace=True)             
 
                 # Drop local and global duplicates
-                tweets = tweets[~tweets.id.isin(self.conversations_existing_ids)]
-                self.conversations_existing_ids = np.concatenate((self.conversations_existing_ids, tweets.id.values)) 
+                tweets = tweets[~tweets.id.isin(conversations_existing_ids)]
+                conversations_existing_ids = np.concatenate((conversations_existing_ids, tweets.id.values)) 
 
                 self.fill_conversations(tweets)
                 self.fill_links(tweets)
@@ -307,7 +334,78 @@ class Fill_database:
                     logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
 
         logging.info('Upload into database succesful')
-
         
 
+        logging.info('Start referencing conversations')
+        self.parents_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
+        mapped_conversations_ids = pd.DataFrame(columns=['id'])
+
+        self.last_id_references = utilities.run_written_query('SELECT max(id) FROM conversation_references', to_dataframe=True, option='from_string')['max'].iloc[0]
+        if self.last_id_references is None:
+            self.last_id_references = 0
+
+        data_rows = []
+        start_time = datetime.now()
+        TIME_TRACKER_FILE_PATH = 'time_tracker_references.csv'
+        with open(TIME_TRACKER_FILE_PATH, 'w'):
+            pass #clear file
+        last_time = datetime.now()
+
+        for row_number, current_tweet in enumerate(f):
+                data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
+
+                if (row_number+1) % batch_size == 0:
+                    tweets = pd.DataFrame(data_rows)
+                    metrics = pd.DataFrame(tweets.public_metrics.to_list())
+                    tweets[metrics.columns] = metrics
+                    tweets.rename(columns={'text' : 'content',
+                                        'lang' : 'language',
+                                        }, inplace=True)              
+                    # Drop local and global duplicates
+                    tweets = tweets.drop_duplicates(subset='id')
+                    tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+                    mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+
+                    self.fill_conversations(self, tweets)              
+
+                    data_rows = []
+                    gc.collect()   
+
+                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                        writer = csv.writer(tt)
+                        since_last_time = (datetime.now()-last_time).seconds
+                        since_start = (datetime.now()-start_time).seconds
+                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+                        last_time = datetime.now()
+                        logging.info(f"Inserted {row_number+1} references in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+
+        if (row_number+1) % batch_size != 0: # Was not precisely divided by size
+            tweets = pd.DataFrame(data_rows)
+            metrics = pd.DataFrame(tweets.public_metrics.to_list())
+            tweets[metrics.columns] = metrics
+            tweets.rename(columns={'text' : 'content',
+                                'lang' : 'language',
+                                }, inplace=True)              
+            # Drop local and global duplicates
+            tweets = tweets.drop_duplicates(subset='id')
+            tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+            mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+
+            self.fill_conversations(self, tweets)              
+
+            data_rows = []
+            gc.collect()   
+
+            with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
+                writer = csv.writer(tt)
+                since_last_time = (datetime.now()-last_time).seconds
+                since_start = (datetime.now()-start_time).seconds
+                writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                             f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+                last_time = datetime.now()
+                logging.info(f"Inserted {row_number+1} references in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+        
+        logging.info("References done")
+        
         self.engine.dispose()

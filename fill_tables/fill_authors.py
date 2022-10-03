@@ -102,7 +102,7 @@ class Fill_authors:
                                      f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                         last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                        logging.info(f"Inserted {row_number+1} authors in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
 
             # Run one more time for the final rows that were not part of the last batch
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
@@ -116,7 +116,7 @@ class Fill_authors:
                                      f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
 
                         last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                        logging.info(f"Inserted {row_number+1} authors in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
 
             logging.info('Upload into authors database succesful')
 
