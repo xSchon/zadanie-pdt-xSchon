@@ -25,7 +25,7 @@ class Fill_authors:
     def fill_table(self, batch_size: int = 100000):
         """Fill SQL authors table with data from authors.jsonl.gz
         
-        Params
+        Params:
             batch_size (int): Default 100 000. 
                 Set how many records to process and upload to database at once.
         """
@@ -40,9 +40,7 @@ class Fill_authors:
         start_time = datetime.now()
 
         TIME_TRACKER_FILE_PATH = 'time_tracker_authors_filling.csv'
-        with open(TIME_TRACKER_FILE_PATH, 'w'):
-            #clear file
-            pass
+        open(TIME_TRACKER_FILE_PATH, 'w').close()  # clear file
 
         logging.info('DB engine connection estabilished')
         re_null = re.compile(pattern='\x00') # Dealing with UTF-8
@@ -60,7 +58,7 @@ class Fill_authors:
             users[['followers_count', 'following_count', 'listed_count', 'tweet_count']] = pd.DataFrame(users.public_metrics.to_list())
             users = users[['id', 'name', 'username', 'description', 'followers_count', 'following_count', 'listed_count', 'tweet_count']]
 
-                                                                       # Drop duplicated ids
+            # Drop duplicated ids
             users = users[~users.id.isin(users_existing_ids)]  # Uploaded in previous batches
             users = users.drop_duplicates('id')                # From this batch
 
@@ -77,51 +75,34 @@ class Fill_authors:
         
         last_time = datetime.now()
         data_rows = [] # Use list of rows to create DataFrame of users for easy upload to DB
+
         # Hold existing user ids in array so that you can delete duplicates
         users_existing_ids = utilities.run_written_query('SELECT id \
-                                                          FROM authors', to_dataframe=True, option='from_string').id.astype('str').values  
-        with gzip.open(config.USERS_PATH, 'rb') as f:
+                                                        FROM authors', to_dataframe=True, option='from_string').id.astype('str').values  
+        
+        # Iterate over all records in jsonl file, load them as JSON
+        with gzip.open(config.USERS_PATH, 'rb') as f: 
             for row_number, current_user in enumerate(f):
-                # Iterate over all records in jsonl file, load them as JSON
                 data_rows.append(json.loads(current_user.decode(encoding='utf-8')))
 
                 if (row_number+1) % batch_size == 0: # Batch of users
                     # Create DataFrame with desired columns
                     users = pd.DataFrame(data_rows)                    
                     users_existing_ids = insert_chunk_into_users(users, users_existing_ids)
+
                     # Clear row data, as these data are already uploaded in the DB
                     data_rows = []
                     users = pd.DataFrame()
-                    logging.info(f'So far processed {row_number+1} users')
 
-                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                        writer = csv.writer(tt)
-                        since_last_time = (datetime.now()-last_time).seconds
-                        since_start = (datetime.now()-start_time).seconds
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-
-                        last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} authors in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                    last_time = utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'authors')
 
             # Run one more time for the final rows that were not part of the last batch
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
                 users = pd.DataFrame(data_rows)
                 users_existing_ids = insert_chunk_into_users(users, users_existing_ids)
-                with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                        writer = csv.writer(tt)
-                        since_last_time = (datetime.now()-last_time).seconds
-                        since_start = (datetime.now()-start_time).seconds
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-
-                        last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} authors in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'authors')
 
             logging.info('Upload into authors database succesful')
 
         engine.dispose()
 
-    def __exit__(self, exc_type, exc_value, traceback):
-        for file in self.files:
-            os.unlink(file)

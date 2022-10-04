@@ -19,7 +19,7 @@ def main():
     logging.info(f'There is {authors_amount.values[0][0]} authors in the DB')
     del(authors)
     gc.collect()
-    
+
     conversations = Fill_database()
     conversations.create_tables()
     conversations.fill_all_tables()

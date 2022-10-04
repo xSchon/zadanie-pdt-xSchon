@@ -1,5 +1,4 @@
 """File to create conversations table and other tables related to it (apart from authors)."""
-import csv
 from datetime import datetime
 import gc
 import gzip
@@ -26,14 +25,20 @@ class Fill_database:
 
 
     def create_tables(self) -> None:
+        """Crete all other tables from scheme."""
         utilities.run_written_query('create_other_tables.sql', option='from_file')
         
     
     def fill_conversations(self, tweets : pd.DataFrame) -> None:
+        """Prepare conversations data and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
+
         conversations_table = tweets[['id', 'author_id', 'content', 'possibly_sensitive', 'language',
                     'source', 'retweet_count', 'reply_count', 'like_count', 'quote_count', 'created_at']].drop_duplicates(subset='id')
 
-        # Add authors that are not in the database already - with null values for rows other than ID
+        # Add authors of the tweets that are not in the database already - with null values for rows other than ID
         authors_to_add = conversations_table[~conversations_table.author_id.isin(self.users_existing_ids)][['author_id']]
         authors_to_add.rename(columns={'author_id' : 'id'}, inplace=True)
         authors_to_add.drop_duplicates(inplace=True)
@@ -54,12 +59,18 @@ class Fill_database:
 
 
     def fill_links(self, tweets : pd.DataFrame) -> None:
+        """Prepare links data and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
         links_table = pd.DataFrame(columns=['expanded_url', 'title', 'description'])
 
+        # Select links from json and assign the same index to them, so they can be tracked for conversation_ids
         entities_index = tweets.dropna(subset='entities').entities.index
         links = pd.DataFrame(tweets.entities.dropna().to_list(), index=entities_index)[['urls']].dropna()
         links_df = pd.DataFrame(links.urls.to_list(), index=links.index)
 
+        # links are now in DataFrame and each column represents one link for id. 
         for col in links_df.columns:
             layer = pd.DataFrame(links_df[col], index=links.index).dropna()
             lnks = pd.DataFrame(layer[col].to_list(), index=layer.index)
@@ -85,11 +96,16 @@ class Fill_database:
 
     
     def fill_annotations(self, tweets : pd.DataFrame) -> None:
+        """Prepare annotations data and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
         annotations_table = pd.DataFrame(columns=['conversation_id', 'value', 'type', 'probability'])
 
         entities_index = tweets.dropna(subset='entities').entities.index
         annotations_raw = pd.DataFrame(tweets.dropna(subset='entities').entities.to_list(), index=entities_index).dropna(subset='annotations').annotations
 
+        # Iterate over all annotations in json
         for layer in range(annotations_raw.apply(lambda x : len(x)).max()):
             layer_annotations = annotations_raw.apply(lambda x : x[layer] if (len(x)>layer) else None).dropna()
             tmp_annotations  = pd.DataFrame(layer_annotations.to_list(), index=layer_annotations.index)
@@ -112,6 +128,10 @@ class Fill_database:
 
     
     def fill_contexts(self, tweets : pd.DataFrame) -> None:
+        """Prepare data about contexts and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
         contexts_raw = tweets.context_annotations.dropna()
 
         contexts_df = pd.DataFrame(contexts_raw.to_list(), index=contexts_raw.index)
@@ -121,6 +141,7 @@ class Fill_database:
 
         for col in contexts_df.columns:
             layer = pd.DataFrame(contexts_df[col], index=contexts_df.index).dropna()
+            # Select entities and domains from table and map them to conversation_id
             ents = pd.DataFrame(layer[col].to_list(), index=layer.index).entity
             doms = pd.DataFrame(layer[col].to_list(), index=layer.index).domain
             ents = pd.DataFrame(ents.to_list(), index=ents.index)
@@ -168,19 +189,25 @@ class Fill_database:
              
 
     def fill_hashtags(self, tweets : pd.DataFrame) -> None:    
+        """Prepare hastags data and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
         entities_index = tweets.dropna(subset='entities').entities.index
 
         hashtags = pd.DataFrame(tweets.entities.dropna().to_list(), index=entities_index)[['hashtags']].dropna()
-        all_hashtags = pd.DataFrame(columns=['tag'])
+        all_hashtags = pd.DataFrame(columns=['tag']) # hashtags mapping to conversations
         hashtags_df = pd.DataFrame(hashtags.hashtags.to_list(), index=hashtags.index)
 
         for col in hashtags_df.columns:
+            # Find hasthtags usage in conversations
             layer = pd.DataFrame(hashtags_df[col], index=hashtags.index).dropna()
             layer_hashtags = pd.DataFrame(layer[col].to_list(), index=layer.index)[['tag']]
             all_hashtags = pd.concat([all_hashtags, layer_hashtags])[['tag']]
 
         all_hashtags = all_hashtags.join(tweets.id).rename(columns={'id' : 'conversation_id'})
         
+        # Find list of uniquely used hastags to add into database
         unique_used_hashtags = all_hashtags[['tag']].drop_duplicates()
         new_hashtags = unique_used_hashtags[~unique_used_hashtags.tag.isin(self.hashtags_full_list.tag)]
         self.hashtags_full_list = pd.concat([self.hashtags_full_list, new_hashtags], ignore_index=True)
@@ -211,7 +238,11 @@ class Fill_database:
             )       
 
 
-    def fill_conversations(self, tweets : pd.DataFrame) -> None:
+    def fill_references(self, tweets : pd.DataFrame) -> None:
+        """Prepare references data and upload the chunk into database.
+        
+        Parameter tweets : chunk of data from conversations.jsonl
+        """
         refs = tweets.dropna(subset='referenced_tweets')[['id', 'referenced_tweets']].dropna(subset='referenced_tweets')
         conversation_references_table = pd.DataFrame(columns=['conversation_id', 'parent_id', 'type'])
 
@@ -224,11 +255,12 @@ class Fill_database:
 
             conversation_references_table = pd.concat([conversation_references_table, conv_refs])
 
+        # Drop references refering to non-existing conversations
         conversation_references_table = conversation_references_table[conversation_references_table.parent_id.isin(self.parents_existing_ids)]
         
         # to_sql does require writing ids manually
         conversation_references_table['id'] = [new_id for new_id in range(self.last_id_references+1, self.last_id_references+1+len(conversation_references_table.index))]
-        self.last_id_link = self.last_id_link+1+len(conversation_references_table.index)
+        self.last_id_references = self.last_id_references+1+len(conversation_references_table.index)
 
         conversation_references_table.to_sql(
             'conversation_references',
@@ -243,10 +275,9 @@ class Fill_database:
         start_time = datetime.now()
 
         TIME_TRACKER_FILE_PATH = 'time_tracker_main_filling.csv'
-        with open(TIME_TRACKER_FILE_PATH, 'w'):
-            #clear file
-            pass
+        open(TIME_TRACKER_FILE_PATH, 'w').close() # Clear
         
+        # Create id counters, since to_sql method needs all columns (including id) when inserting into table
         self.last_id_link = utilities.run_written_query('SELECT max(id) FROM links', to_dataframe=True, option='from_string')['max'].iloc[0]
         if self.last_id_link is None:
             self.last_id_link = 0
@@ -260,7 +291,7 @@ class Fill_database:
         if self.last_id_hashtags is None:
             self.last_id_hashtags = 0
 
-        # 5 arrays helping to get information about used parts of the program 
+        # 5 arrays helping to get information about used parts of the program, so there is no need to query too often 
         conversations_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
         self.users_existing_ids = utilities.run_written_query('SELECT id FROM authors;', to_dataframe=True, option='from_string').id.astype('str').values 
         self.context_entities_existing_ids = utilities.run_written_query('SELECT id FROM context_entities;', to_dataframe=True, option='from_string').id.astype('str').values 
@@ -268,11 +299,13 @@ class Fill_database:
         self.hashtags_full_list = utilities.run_written_query('SELECT tag FROM hashtags;', to_dataframe=True, option='from_string')
 
         last_time = datetime.now()
+        # Iterate over all records in jsonl file, load them as JSON
         with gzip.open(config.TWEETS_PATH, 'rb') as f:
             for row_number, current_tweet in enumerate(f):
                 data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
 
                 if (row_number+1) % batch_size == 0:
+                    # Prepare chunk of tweets
                     tweets = pd.DataFrame(data_rows)
                     metrics = pd.DataFrame(tweets.public_metrics.to_list())
                     tweets[metrics.columns] = metrics
@@ -289,20 +322,11 @@ class Fill_database:
                     self.fill_annotations(tweets)
                     self.fill_contexts(tweets)
                     self.fill_hashtags(tweets)   
-                    
 
                     data_rows = []
                     gc.collect()   
 
-                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                        writer = csv.writer(tt)
-                        since_last_time = (datetime.now()-last_time).seconds
-                        since_start = (datetime.now()-start_time).seconds
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-
-                        last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                    last_time = utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
     
 
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
@@ -323,22 +347,14 @@ class Fill_database:
                 self.fill_contexts(tweets)
                 self.fill_hashtags(tweets)
 
-                with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                    writer = csv.writer(tt)
-                    since_last_time = (datetime.now()-last_time).seconds
-                    since_start = (datetime.now()-start_time).seconds
-                    writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                         f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-
-                    last_time = datetime.now()
-                    logging.info(f"Inserted {row_number+1} conversations in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+                utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
 
         logging.info('Upload into database succesful')
         
 
         logging.info('Start referencing conversations')
         self.parents_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
-        mapped_conversations_ids = pd.DataFrame(columns=['id'])
+       # mapped_conversations_ids = np.array([])
 
         self.last_id_references = utilities.run_written_query('SELECT max(id) FROM conversation_references', to_dataframe=True, option='from_string')['max'].iloc[0]
         if self.last_id_references is None:
@@ -347,65 +363,49 @@ class Fill_database:
         data_rows = []
         start_time = datetime.now()
         TIME_TRACKER_FILE_PATH = 'time_tracker_references.csv'
-        with open(TIME_TRACKER_FILE_PATH, 'w'):
-            pass #clear file
+        open(TIME_TRACKER_FILE_PATH, 'w').close() # clear file
         last_time = datetime.now()
 
-        for row_number, current_tweet in enumerate(f):
-                data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
+        with gzip.open(config.TWEETS_PATH, 'rb') as f:
+            for row_number, current_tweet in enumerate(f):
+                    data_rows.append(json.loads(current_tweet.decode(encoding='utf-8')))
 
-                if (row_number+1) % batch_size == 0:
-                    tweets = pd.DataFrame(data_rows)
-                    metrics = pd.DataFrame(tweets.public_metrics.to_list())
-                    tweets[metrics.columns] = metrics
-                    tweets.rename(columns={'text' : 'content',
-                                        'lang' : 'language',
-                                        }, inplace=True)              
-                    # Drop local and global duplicates
-                    tweets = tweets.drop_duplicates(subset='id')
-                    tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-                    mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+                    if (row_number+1) % batch_size == 0:
+                        tweets = pd.DataFrame(data_rows)
+                        metrics = pd.DataFrame(tweets.public_metrics.to_list())
+                        tweets[metrics.columns] = metrics
+                        tweets.rename(columns={'text' : 'content',
+                                            'lang' : 'language',
+                                            }, inplace=True)              
+                        # Drop local and global duplicates
+                    #    tweets = tweets.drop_duplicates(subset='id')
+                    #    tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+                    #    mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
 
-                    self.fill_conversations(self, tweets)              
+                        self.fill_references(tweets)              
 
-                    data_rows = []
-                    gc.collect()   
+                        data_rows = []
+                        gc.collect()   
+                        last_time = utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
 
-                    with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                        writer = csv.writer(tt)
-                        since_last_time = (datetime.now()-last_time).seconds
-                        since_start = (datetime.now()-start_time).seconds
-                        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-                        last_time = datetime.now()
-                        logging.info(f"Inserted {row_number+1} references in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+            if (row_number+1) % batch_size != 0: # Was not precisely divided by size
+                tweets = pd.DataFrame(data_rows)
+                metrics = pd.DataFrame(tweets.public_metrics.to_list())
+                tweets[metrics.columns] = metrics
+                tweets.rename(columns={'text' : 'content',
+                                    'lang' : 'language',
+                                    }, inplace=True)              
+                # Drop local and global duplicates
+             #   tweets = tweets.drop_duplicates(subset='id')
+             #   tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+             #   mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
 
-        if (row_number+1) % batch_size != 0: # Was not precisely divided by size
-            tweets = pd.DataFrame(data_rows)
-            metrics = pd.DataFrame(tweets.public_metrics.to_list())
-            tweets[metrics.columns] = metrics
-            tweets.rename(columns={'text' : 'content',
-                                'lang' : 'language',
-                                }, inplace=True)              
-            # Drop local and global duplicates
-            tweets = tweets.drop_duplicates(subset='id')
-            tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-            mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+                self.fill_references(tweets)              
 
-            self.fill_conversations(self, tweets)              
-
-            data_rows = []
-            gc.collect()   
-
-            with open(TIME_TRACKER_FILE_PATH, 'a') as tt:
-                writer = csv.writer(tt)
-                since_last_time = (datetime.now()-last_time).seconds
-                since_start = (datetime.now()-start_time).seconds
-                writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
-                             f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
-                last_time = datetime.now()
-                logging.info(f"Inserted {row_number+1} references in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
-        
-        logging.info("References done")
-        
+                data_rows = []
+                gc.collect()   
+                utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
+            
+            logging.info("References done")
+            
         self.engine.dispose()

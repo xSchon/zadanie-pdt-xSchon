@@ -1,4 +1,6 @@
 """This file serves the purpose of holding helpful functions accessible from any other file."""
+import csv
+from datetime import datetime
 import logging
 import warnings
 warnings.filterwarnings('ignore') # Ignore warning about usage of psycopgs at every connection
@@ -38,8 +40,35 @@ def run_written_query(name_of_query: str, to_dataframe: bool = False, option: st
             return None 
 
         if to_dataframe:
-            return pd.read_sql(query, con=conn)
+            df = pd.read_sql(query, con=conn)
+            logging.info(f'Query {name_of_query} finished!') 
+            return df
 
         conn.cursor().execute(query=query)
         logging.info(f'Query {name_of_query} finished!') 
         return None
+
+
+def progress_track(file_path : str, last_time : datetime, start_time : datetime, row_number : int, name_process : str) -> datetime:
+    """Function that helps to track progress of data processing and writes into .csv file
+       as well as logs progres. The path in file_path is appended only!
+
+       Args:
+            file_path(str) : path to the .csv file used for tracking
+            last_time(datetime) : time since last batch was processed
+            start_time(datetime) : time when current calculations started
+            row_number(int) : number of processed rows so far
+            name_process(str) : name of tracked process to be logged
+        Returns:
+            datetime : current time, used to replace last_time when this fucntion called
+    """
+    with open(file_path, 'a') as track_file:
+        writer = csv.writer(track_file)
+        since_last_time = (datetime.now()-last_time).seconds
+        since_start = (datetime.now()-start_time).seconds
+        writer.writerow([last_time.isoformat(), f"{str(since_last_time//60).zfill(2)}:{str(since_last_time % 60).zfill(2)}",\
+                                     f"{str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}"])
+
+        logging.info(f"Inserted {row_number+1} {name_process} in: {str(since_start//60).zfill(2)}:{str(since_start % 60).zfill(2)}")
+        return datetime.now()
+                        
