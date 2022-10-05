@@ -78,7 +78,7 @@ class Fill_database:
             links_table = pd.concat([links_table, lnks])[links_table.columns]
 
         # Drop links longer than 255 characters
-        links_table = links_table[links_table.expanded_url.str.len() <= 256]
+        links_table = links_table[links_table.expanded_url.str.len() <= 255]
         links_table = links_table.join(tweets[['id']])
         links_table.rename(columns={'expanded_url' : 'url', 'id' : 'conversation_id'}, inplace=True)
 
@@ -326,7 +326,7 @@ class Fill_database:
                     data_rows = []
                     gc.collect()   
 
-                    last_time = utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
+                    last_time = utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'conversations')
     
 
             if (row_number+1) % batch_size != 0: # Was not precisely divided by size
@@ -347,14 +347,14 @@ class Fill_database:
                 self.fill_contexts(tweets)
                 self.fill_hashtags(tweets)
 
-                utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'references')
+                utilities.progress_track(TIME_TRACKER_FILE_PATH, last_time, start_time, row_number, 'conversations')
 
         logging.info('Upload into database succesful')
         
 
         logging.info('Start referencing conversations')
         self.parents_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
-       # mapped_conversations_ids = np.array([])
+        # mapped_conversations_ids = np.array([])
 
         self.last_id_references = utilities.run_written_query('SELECT max(id) FROM conversation_references', to_dataframe=True, option='from_string')['max'].iloc[0]
         if self.last_id_references is None:
@@ -378,9 +378,11 @@ class Fill_database:
                                             'lang' : 'language',
                                             }, inplace=True)              
                         # Drop local and global duplicates
-                    #    tweets = tweets.drop_duplicates(subset='id')
-                    #    tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-                    #    mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+                        """
+                        tweets = tweets.drop_duplicates(subset='id')
+                        tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+                        mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+                        """
 
                         self.fill_references(tweets)              
 
@@ -396,10 +398,11 @@ class Fill_database:
                                     'lang' : 'language',
                                     }, inplace=True)              
                 # Drop local and global duplicates
-             #   tweets = tweets.drop_duplicates(subset='id')
-             #   tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-             #   mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
-
+                """
+                tweets = tweets.drop_duplicates(subset='id')
+                tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
+                mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
+                """
                 self.fill_references(tweets)              
 
                 data_rows = []
