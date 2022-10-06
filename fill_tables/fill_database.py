@@ -354,7 +354,6 @@ class Fill_database:
 
         logging.info('Start referencing conversations')
         self.parents_existing_ids = utilities.run_written_query('SELECT id FROM conversations;', to_dataframe=True, option='from_string').id.astype('str').values
-        mapped_conversations_ids = np.array([])
 
         self.last_id_references = utilities.run_written_query('SELECT max(id) FROM conversation_references', to_dataframe=True, option='from_string')['max'].iloc[0]
         if self.last_id_references is None:
@@ -377,12 +376,6 @@ class Fill_database:
                         tweets.rename(columns={'text' : 'content',
                                             'lang' : 'language',
                                             }, inplace=True)              
-                        # Drop local and global duplicates
-                        
-                        tweets = tweets.drop_duplicates(subset='id')
-                        tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-                        mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
-                        
 
                         self.fill_references(tweets)              
 
@@ -397,12 +390,7 @@ class Fill_database:
                 tweets.rename(columns={'text' : 'content',
                                     'lang' : 'language',
                                     }, inplace=True)              
-                # Drop local and global duplicates
-                
-                tweets = tweets.drop_duplicates(subset='id')
-                tweets = tweets[~tweets.id.isin(mapped_conversations_ids)]
-                mapped_conversations_ids = np.concatenate((mapped_conversations_ids, tweets.id.values))       
-                
+
                 self.fill_references(tweets)              
 
                 data_rows = []
