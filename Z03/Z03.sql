@@ -1,5 +1,5 @@
 ---  Author: Martin Schon ---
----  PDT_Z02              ---
+---  PDT_Z03              ---
 
 ----  S02  ----------------------------------------------------------------
 SELECT name, ST_Astext(ST_Transform(way, 4326))
