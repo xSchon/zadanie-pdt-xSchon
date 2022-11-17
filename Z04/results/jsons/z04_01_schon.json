@@ -1,0 +1,51 @@
+﻿[
+  {
+    "me": {
+"identity": 672,
+"labels": [
+        "Author"
+      ],
+"properties": {
+"name": "Martin Schon",
+"username": "xschon"
+      }
+    },
+    "myTweet": {
+"identity": 686,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"language": "en",
+"content": "I wonder what data we would use if there was no war!"
+      }
+    },
+    "h": {
+"identity": 3,
+"labels": [
+        "Hashtag"
+      ],
+"properties": {
+"tag": "EU"
+      }
+    },
+    "tweet": {
+"identity": 9038996,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"like_count": 134149,
+"created_at": "2022-03-01T09:25:40",
+"language": "en",
+"source": "Twitter for iPhone",
+"id": 1498575182583185409,
+"reply_count": 3909,
+"author_id": 1120633726478823425,
+"quote_count": 571,
+"content": "Olena and I are grateful to the Duke and Duchess of Cambridge @RoyalFamily that at this crucial time, when Ukraine is courageously opposing Russia's invasion, they stand by our country and support our brave citizens.  Good will triumph.",
+"retweet_count": 12737
+      }
+    }
+  }
+]

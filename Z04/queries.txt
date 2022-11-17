@@ -1,0 +1,71 @@
+ULOHA 1
+
+Ziskanie najviac retweetovaneho tweetu od Zelenskeho
+
+CALL {
+MATCH (author:Author {username: 'ZelenskyyUa'})-[rel:TWEETED]-(tweet:Conversation)<-[rel2:REPLIED_TO]-(reply:Conversation) 
+RETURN tweet, COUNT(rel2) AS topt
+ORDER BY topt DESC
+LIMIT 1
+} 
+
+MATCH (h:Hashtag {tag: 'EU'})
+CREATE (me:Author {username : 'xschon', name: 'Martin Schon'})-[:TWEETED]->(myTweet:Conversation {content : 'I wonder what data we would use if there was no war!', language : 'en'})-[:HAS]->(h)
+CREATE (myTweet)-[:RETWEETED]->(tweet)
+RETURN me, myTweet, h, tweet
+--------------------------------------------------------------------------------------------------------------------------------
+
+ULOHA 2
+
+CALL {MATCH (topa:Author)-[twtd:TWEETED]->(t:Conversation)<-[rt:RETWEETED]-(c)
+RETURN topa, COUNT(rt) AS ct
+ORDER BY ct DESC
+LIMIT 10}
+MATCH (topa)-[:TWEETED]->(twts:Conversation)<-[r:RETWEETED]-(:Conversation)
+RETURN topa, twts, COUNT(r) AS rts
+ORDER BY rts
+LIMIT 20
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+ULOHA 3
+
+MATCH (a: Author {username:"Marios59885699"})-[:TWEETED]->(twts:Conversation)-[:RETWEETED]->
+(:Conversation)<-[:RETWEETED*..2]-(shared:Conversation)<-[:TWEETED]-(other:Author)
+WHERE other.username <> "Marios59885699"
+RETURN other, COUNT(shared) AS sha
+ORDER BY sha DESC
+LIMIT 10
+
+--------------------------------------------------------------------------------------------------------------------------------
+ULOHA 4
+
+MATCH p = allShortestPaths((:Author {username : "nexta_tv"})-[:TWEETED|RETWEETED|REPLIED_TO|QUOTED*..10]-(:Author {username : "ua_parliament"}))
+RETURN p
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+ULOHA 5
+
+CALL {
+MATCH sp = shortestPath((:Author {username : "nexta_tv"})-[:TWEETED|RETWEETED|REPLIED_TO|QUOTED*..10]-(:Author {username : "ua_parliament"}))
+return sp}
+UNWIND nodes(sp) AS nodeLinks
+MATCH (nodeLinks)<-[:TWEETED]-(a:Author)
+RETURN nodeLinks, a
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+ULOHA 6
+
+CALL {MATCH (h:Hashtag)<-[use:HAS]-() 
+RETURN h, COUNT(use) AS usage
+ORDER BY usage DESC
+LIMIT 10}
+MATCH (h)<-[husage:HAS]-(:Conversation)<-[:TWEETED]-(a:Author)
+WITH a, h, count(husage) AS hUsag
+ORDER BY hUsag DESC
+RETURN h AS hashtag, collect(a)[0] AS author, max(hUsag) AS timesUsed
+ORDER BY timesUsed DESC
+

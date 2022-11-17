@@ -1,0 +1,153 @@
+﻿[
+  {
+    "nodeLinks": {
+"identity": 7442793,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"like_count": 17730,
+"created_at": "2022-02-28T16:59:35",
+"language": "en",
+"source": "Twitter for iPhone",
+"id": 1498327028382240777,
+"reply_count": 242,
+"author_id": 1891490382,
+"quote_count": 414,
+"content": "⚡️⚡️⚡️Zelensky signed an application for #Ukraine's membership in the #European Union. https://t.co/imVodbdaKv",
+"retweet_count": 3351
+      }
+    },
+    "a": {
+"identity": 2150652,
+"labels": [
+        "Author"
+      ],
+"properties": {
+"tweet_count": 15056,
+"following_count": 90,
+"listed_count": 8589,
+"followers_count": 994430,
+"name": "NEXTA",
+"description": "The largest Eastern European media. To let the world know.
+
+Become our patron: https://t.co/OPvjSvcOcK",
+"id": 1891490382,
+"username": "nexta_tv"
+      }
+    }
+  },
+  {
+    "nodeLinks": {
+"identity": 7461944,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"like_count": 4,
+"created_at": "2022-02-28T17:11:01",
+"language": "en",
+"source": "TweetDeck",
+"id": 1498329906387771394,
+"author_id": 19405396,
+"reply_count": 5,
+"quote_count": 0,
+"content": "WTF?
+
+Is this true?????? Can anyone confirm? https://t.co/KLo2tn3ypr",
+"retweet_count": 0
+      }
+    },
+    "a": {
+"identity": 5020919,
+"labels": [
+        "Author"
+      ],
+"properties": {
+"tweet_count": 219296,
+"following_count": 1712,
+"listed_count": 99,
+"followers_count": 5770,
+"name": "Marco Almeida",
+"description": "Fell off the bike at the age of 10 and crippled one knee. Since then he can predict the weather with great success. WordPress geek.",
+"id": 19405396,
+"username": "Wonderm00n"
+      }
+    }
+  },
+  {
+    "nodeLinks": {
+"identity": 7463088,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"like_count": 1,
+"created_at": "2022-02-28T17:11:29",
+"language": "qme",
+"source": "TweetDeck",
+"id": 1498330023454982154,
+"author_id": 680693,
+"reply_count": 1,
+"quote_count": 0,
+"content": "@Wonderm00n https://t.co/nmC3FS0aqR",
+"retweet_count": 1
+      }
+    },
+    "a": {
+"identity": 3252814,
+"labels": [
+        "Author"
+      ],
+"properties": {
+"tweet_count": 10819,
+"listed_count": 26,
+"following_count": 519,
+"followers_count": 792,
+"name": "Tiago",
+"description": "Lord of the Fries",
+"id": 680693,
+"username": "Rajadas"
+      }
+    }
+  },
+  {
+    "nodeLinks": {
+"identity": 7436181,
+"labels": [
+        "Conversation"
+      ],
+"properties": {
+"like_count": 70726,
+"created_at": "2022-02-28T16:56:51",
+"language": "en",
+"source": "Twitter for Android",
+"id": 1498326340591919110,
+"reply_count": 2395,
+"author_id": 832524310199824384,
+"quote_count": 3091,
+"content": "President @ZelenskyyUa has signed application for the membership of #Ukraine in the European Union.
+
+This is a historic moment! https://t.co/rmzdgIwArc",
+"retweet_count": 14967
+      }
+    },
+    "a": {
+"identity": 2152326,
+"labels": [
+        "Author"
+      ],
+"properties": {
+"tweet_count": 5518,
+"following_count": 1582,
+"listed_count": 1106,
+"followers_count": 65318,
+"name": "Verkhovna Rada of Ukraine - Ukrainian Parliament",
+"description": "Official account of the Parliament of Ukraine. Read us on Telegram: https://t.co/7rFksZcG9C.
+For media inquiries please contact: infuprvru@gmail.com",
+"id": 832524310199824384,
+"username": "ua_parliament"
+      }
+    }
+  }
+]

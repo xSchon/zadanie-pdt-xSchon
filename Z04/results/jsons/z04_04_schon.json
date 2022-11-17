@@ -1,0 +1,286 @@
+﻿[
+  {
+    "p": {
+"start": {
+"identity": 2150652,
+"labels": [
+          "Author"
+        ],
+"properties": {
+"tweet_count": 15056,
+"following_count": 90,
+"listed_count": 8589,
+"followers_count": 994430,
+"name": "NEXTA",
+"description": "The largest Eastern European media. To let the world know.
+
+Become our patron: https://t.co/OPvjSvcOcK",
+"id": 1891490382,
+"username": "nexta_tv"
+        }
+      },
+"end": {
+"identity": 2152326,
+"labels": [
+          "Author"
+        ],
+"properties": {
+"tweet_count": 5518,
+"following_count": 1582,
+"listed_count": 1106,
+"followers_count": 65318,
+"name": "Verkhovna Rada of Ukraine - Ukrainian Parliament",
+"description": "Official account of the Parliament of Ukraine. Read us on Telegram: https://t.co/7rFksZcG9C.
+For media inquiries please contact: infuprvru@gmail.com",
+"id": 832524310199824384,
+"username": "ua_parliament"
+        }
+      },
+"segments": [
+        {
+          "start": {
+"identity": 2150652,
+"labels": [
+              "Author"
+            ],
+"properties": {
+"tweet_count": 15056,
+"following_count": 90,
+"listed_count": 8589,
+"followers_count": 994430,
+"name": "NEXTA",
+"description": "The largest Eastern European media. To let the world know.
+
+Become our patron: https://t.co/OPvjSvcOcK",
+"id": 1891490382,
+"username": "nexta_tv"
+            }
+          },
+          "relationship": {
+"identity": 1766163,
+"start": 2150652,
+"end": 7442793,
+"type": "TWEETED",
+"properties": {
+
+            }
+          },
+          "end": {
+"identity": 7442793,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 17730,
+"created_at": "2022-02-28T16:59:35",
+"language": "en",
+"source": "Twitter for iPhone",
+"id": 1498327028382240777,
+"reply_count": 242,
+"author_id": 1891490382,
+"quote_count": 414,
+"content": "⚡️⚡️⚡️Zelensky signed an application for #Ukraine's membership in the #European Union. https://t.co/imVodbdaKv",
+"retweet_count": 3351
+            }
+          }
+        },
+        {
+          "start": {
+"identity": 7442793,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 17730,
+"created_at": "2022-02-28T16:59:35",
+"language": "en",
+"source": "Twitter for iPhone",
+"id": 1498327028382240777,
+"reply_count": 242,
+"author_id": 1891490382,
+"quote_count": 414,
+"content": "⚡️⚡️⚡️Zelensky signed an application for #Ukraine's membership in the #European Union. https://t.co/imVodbdaKv",
+"retweet_count": 3351
+            }
+          },
+          "relationship": {
+"identity": 5247440,
+"start": 7461944,
+"end": 7442793,
+"type": "QUOTED",
+"properties": {
+
+            }
+          },
+          "end": {
+"identity": 7461944,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 4,
+"created_at": "2022-02-28T17:11:01",
+"language": "en",
+"source": "TweetDeck",
+"id": 1498329906387771394,
+"author_id": 19405396,
+"reply_count": 5,
+"quote_count": 0,
+"content": "WTF?
+
+Is this true?????? Can anyone confirm? https://t.co/KLo2tn3ypr",
+"retweet_count": 0
+            }
+          }
+        },
+        {
+          "start": {
+"identity": 7461944,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 4,
+"created_at": "2022-02-28T17:11:01",
+"language": "en",
+"source": "TweetDeck",
+"id": 1498329906387771394,
+"author_id": 19405396,
+"reply_count": 5,
+"quote_count": 0,
+"content": "WTF?
+
+Is this true?????? Can anyone confirm? https://t.co/KLo2tn3ypr",
+"retweet_count": 0
+            }
+          },
+          "relationship": {
+"identity": 5497639,
+"start": 7463088,
+"end": 7461944,
+"type": "REPLIED_TO",
+"properties": {
+
+            }
+          },
+          "end": {
+"identity": 7463088,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 1,
+"created_at": "2022-02-28T17:11:29",
+"language": "qme",
+"source": "TweetDeck",
+"id": 1498330023454982154,
+"author_id": 680693,
+"reply_count": 1,
+"quote_count": 0,
+"content": "@Wonderm00n https://t.co/nmC3FS0aqR",
+"retweet_count": 1
+            }
+          }
+        },
+        {
+          "start": {
+"identity": 7463088,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 1,
+"created_at": "2022-02-28T17:11:29",
+"language": "qme",
+"source": "TweetDeck",
+"id": 1498330023454982154,
+"author_id": 680693,
+"reply_count": 1,
+"quote_count": 0,
+"content": "@Wonderm00n https://t.co/nmC3FS0aqR",
+"retweet_count": 1
+            }
+          },
+          "relationship": {
+"identity": 5414469,
+"start": 7463088,
+"end": 7436181,
+"type": "QUOTED",
+"properties": {
+
+            }
+          },
+          "end": {
+"identity": 7436181,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 70726,
+"created_at": "2022-02-28T16:56:51",
+"language": "en",
+"source": "Twitter for Android",
+"id": 1498326340591919110,
+"reply_count": 2395,
+"author_id": 832524310199824384,
+"quote_count": 3091,
+"content": "President @ZelenskyyUa has signed application for the membership of #Ukraine in the European Union.
+
+This is a historic moment! https://t.co/rmzdgIwArc",
+"retweet_count": 14967
+            }
+          }
+        },
+        {
+          "start": {
+"identity": 7436181,
+"labels": [
+              "Conversation"
+            ],
+"properties": {
+"like_count": 70726,
+"created_at": "2022-02-28T16:56:51",
+"language": "en",
+"source": "Twitter for Android",
+"id": 1498326340591919110,
+"reply_count": 2395,
+"author_id": 832524310199824384,
+"quote_count": 3091,
+"content": "President @ZelenskyyUa has signed application for the membership of #Ukraine in the European Union.
+
+This is a historic moment! https://t.co/rmzdgIwArc",
+"retweet_count": 14967
+            }
+          },
+          "relationship": {
+"identity": 1759551,
+"start": 2152326,
+"end": 7436181,
+"type": "TWEETED",
+"properties": {
+
+            }
+          },
+          "end": {
+"identity": 2152326,
+"labels": [
+              "Author"
+            ],
+"properties": {
+"tweet_count": 5518,
+"following_count": 1582,
+"listed_count": 1106,
+"followers_count": 65318,
+"name": "Verkhovna Rada of Ukraine - Ukrainian Parliament",
+"description": "Official account of the Parliament of Ukraine. Read us on Telegram: https://t.co/7rFksZcG9C.
+For media inquiries please contact: infuprvru@gmail.com",
+"id": 832524310199824384,
+"username": "ua_parliament"
+            }
+          }
+        }
+      ],
+"length": 5.0
+    }
+  }
+]
