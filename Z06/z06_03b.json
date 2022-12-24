@@ -1,0 +1,1240 @@
+[{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90c5"
+  },
+  "id": "1496733486039900161",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | LPR claims to have shot down a Bayraktar TB2 drone over Schastya#Ukraina #UkraineRussie #UkraineRussiaCrisis #UkraineConflict #UkraineCrisis #Ukraine",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 0,
+  "like_count": 6,
+  "quote_count": 0,
+  "created_at": "2022-02-24T06:27:25+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": null,
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 8,
+      "tag": "UkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 49,
+      "tag": "UkraineCrisis"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 3116,
+      "conversation_id": "1496733486039900161",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90c6"
+  },
+  "id": "1496735105561288704",
+  "author_id": "1495377954045665283",
+  "content": "RT @newnews_tr: ⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbra…",
+  "possibly_sensitive": false,
+  "language": "tr",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 0,
+  "like_count": 0,
+  "quote_count": 0,
+  "created_at": "2022-02-24T06:33:51+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": null,
+  "hashtags": [
+    {
+      "id": 55,
+      "tag": "SONDAKİKA"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 11664,
+      "conversation_id": "1496735105561288704",
+      "context_domain_id": 131,
+      "context_entity_id": "1046545033657081857"
+    },
+    {
+      "id": 11665,
+      "conversation_id": "1496735105561288704",
+      "context_domain_id": 131,
+      "context_entity_id": "1047084549396549632"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": [
+      {
+        "type": "retweeted",
+        "hashtags": [
+          {
+            "id": 55,
+            "tag": "SONDAKİKA"
+          }
+        ],
+        "context_annotations": [
+          {
+            "id": 9221,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 9222,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1046545033657081857"
+          },
+          {
+            "id": 9223,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1047084549396549632"
+          }
+        ],
+        "authors": {
+          "id": "1495377954045665283",
+          "name": "New News EU 🔴",
+          "username": "Newnews_eu",
+          "description": "Independent Media",
+          "tweet_count": 1732,
+          "listed_count": 36,
+          "followers_count": 3323,
+          "following_count": 1
+        },
+        "conversations": {
+          "id": "1496734662831529986",
+          "author_id": "1397642208233336833",
+          "content": "⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbrahim Kalın ve Milli Savunma Bakanı Hulusi Akar katılacak.#Ukraina #UkraineConflict #UkraineRussiaCrisis #UkraineCrisis https://t.co/675LPtrVIr",
+          "possibly_sensitive": false,
+          "language": "tr",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "created_at": "2022-02-24T06:32:06+00:00"
+        },
+        "links": null,
+        "annotations": null
+      },
+      {
+        "type": "retweeted",
+        "hashtags": [
+          {
+            "id": 55,
+            "tag": "SONDAKİKA"
+          }
+        ],
+        "context_annotations": [
+          {
+            "id": 9221,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 9222,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1046545033657081857"
+          },
+          {
+            "id": 9223,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1047084549396549632"
+          }
+        ],
+        "authors": {
+          "id": "1495377954045665283",
+          "name": "New News EU 🔴",
+          "username": "Newnews_eu",
+          "description": "Independent Media",
+          "tweet_count": 1732,
+          "listed_count": 36,
+          "followers_count": 3323,
+          "following_count": 1
+        },
+        "conversations": {
+          "id": "1496734662831529986",
+          "author_id": "1397642208233336833",
+          "content": "⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbrahim Kalın ve Milli Savunma Bakanı Hulusi Akar katılacak.#Ukraina #UkraineConflict #UkraineRussiaCrisis #UkraineCrisis https://t.co/675LPtrVIr",
+          "possibly_sensitive": false,
+          "language": "tr",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "created_at": "2022-02-24T06:32:06+00:00"
+        },
+        "links": null,
+        "annotations": null
+      },
+      {
+        "type": "retweeted",
+        "hashtags": [
+          {
+            "id": 55,
+            "tag": "SONDAKİKA"
+          }
+        ],
+        "context_annotations": [
+          {
+            "id": 9221,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 9222,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1046545033657081857"
+          },
+          {
+            "id": 9223,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1047084549396549632"
+          }
+        ],
+        "authors": {
+          "id": "1495377954045665283",
+          "name": "New News EU 🔴",
+          "username": "Newnews_eu",
+          "description": "Independent Media",
+          "tweet_count": 1732,
+          "listed_count": 36,
+          "followers_count": 3323,
+          "following_count": 1
+        },
+        "conversations": {
+          "id": "1496734662831529986",
+          "author_id": "1397642208233336833",
+          "content": "⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbrahim Kalın ve Milli Savunma Bakanı Hulusi Akar katılacak.#Ukraina #UkraineConflict #UkraineRussiaCrisis #UkraineCrisis https://t.co/675LPtrVIr",
+          "possibly_sensitive": false,
+          "language": "tr",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "created_at": "2022-02-24T06:32:06+00:00"
+        },
+        "links": null,
+        "annotations": null
+      },
+      {
+        "type": "retweeted",
+        "hashtags": [
+          {
+            "id": 55,
+            "tag": "SONDAKİKA"
+          }
+        ],
+        "context_annotations": [
+          {
+            "id": 9221,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 9222,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1046545033657081857"
+          },
+          {
+            "id": 9223,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1047084549396549632"
+          }
+        ],
+        "authors": {
+          "id": "1495377954045665283",
+          "name": "New News EU 🔴",
+          "username": "Newnews_eu",
+          "description": "Independent Media",
+          "tweet_count": 1732,
+          "listed_count": 36,
+          "followers_count": 3323,
+          "following_count": 1
+        },
+        "conversations": {
+          "id": "1496734662831529986",
+          "author_id": "1397642208233336833",
+          "content": "⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbrahim Kalın ve Milli Savunma Bakanı Hulusi Akar katılacak.#Ukraina #UkraineConflict #UkraineRussiaCrisis #UkraineCrisis https://t.co/675LPtrVIr",
+          "possibly_sensitive": false,
+          "language": "tr",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "created_at": "2022-02-24T06:32:06+00:00"
+        },
+        "links": null,
+        "annotations": null
+      },
+      {
+        "type": "retweeted",
+        "hashtags": [
+          {
+            "id": 55,
+            "tag": "SONDAKİKA"
+          }
+        ],
+        "context_annotations": [
+          {
+            "id": 9221,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 9222,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1046545033657081857"
+          },
+          {
+            "id": 9223,
+            "conversation_id": "1496734662831529986",
+            "context_domain_id": 131,
+            "context_entity_id": "1047084549396549632"
+          }
+        ],
+        "authors": {
+          "id": "1495377954045665283",
+          "name": "New News EU 🔴",
+          "username": "Newnews_eu",
+          "description": "Independent Media",
+          "tweet_count": 1732,
+          "listed_count": 36,
+          "followers_count": 3323,
+          "following_count": 1
+        },
+        "conversations": {
+          "id": "1496734662831529986",
+          "author_id": "1397642208233336833",
+          "content": "⚠️#SONDAKİKACumhurbaşkanı Erdoğan, Saat: 11:00’de güvenlik zirvesini toplayacak.Toplantıya Cumhurbaşkanlığı Sözcüsü İbrahim Kalın ve Milli Savunma Bakanı Hulusi Akar katılacak.#Ukraina #UkraineConflict #UkraineRussiaCrisis #UkraineCrisis https://t.co/675LPtrVIr",
+          "possibly_sensitive": false,
+          "language": "tr",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "created_at": "2022-02-24T06:32:06+00:00"
+        },
+        "links": null,
+        "annotations": null
+      }
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90c7"
+  },
+  "id": "1496737133821931523",
+  "author_id": "1495377954045665283",
+  "content": "🔺️A Turkish family living in Ukraine goes down to shelters with their neighbors.#BREAKING #SONDAKİKA #Ukraina #UkraineRussie #UkraineConflict #UkraineRussiaConflict #Russia #Putin https://t.co/xWYteAmh8n",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 6,
+  "reply_count": 0,
+  "like_count": 17,
+  "quote_count": 1,
+  "created_at": "2022-02-24T06:41:55+00:00",
+  "annotations": [
+    {
+      "id": 3022,
+      "conversation_id": "1496737133821931523",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.999
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 4777,
+      "conversation_id": "1496737133821931523",
+      "url": "https://twitter.com/bay_sinan/status/1496690614963945476",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 1,
+      "tag": "Putin"
+    },
+    {
+      "id": 8,
+      "tag": "UkraineConflict"
+    },
+    {
+      "id": 10,
+      "tag": "Russia"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 55,
+      "tag": "SONDAKİKA"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 22664,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 22665,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 131,
+      "context_entity_id": "1046545033657081857"
+    },
+    {
+      "id": 22666,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 131,
+      "context_entity_id": "1047084549396549632"
+    },
+    {
+      "id": 22667,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 22668,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 22669,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 22670,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 22671,
+      "conversation_id": "1496737133821931523",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90c8"
+  },
+  "id": "1496739334300614658",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | President of Ukraine:\"I met with the US President, the British Prime Minister and the German Chancellor and urged them to stop Putin...\"#UkraineRussie#Ukraine#Ukraine#UkraineCrisis#UkraineConflict#RussiaUkraineConflict https://t.co/ywu3qsyC3J",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 0,
+  "like_count": 4,
+  "quote_count": 0,
+  "created_at": "2022-02-24T06:50:40+00:00",
+  "annotations": [
+    {
+      "id": 18198411,
+      "conversation_id": "1496739334300614658",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.932
+    },
+    {
+      "id": 18218648,
+      "conversation_id": "1496739334300614658",
+      "value": "US",
+      "type": "Place",
+      "probability": 0.56
+    },
+    {
+      "id": 18228605,
+      "conversation_id": "1496739334300614658",
+      "value": "Putin",
+      "type": "Person",
+      "probability": 0.963
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 10434648,
+      "conversation_id": "1496739334300614658",
+      "url": "https://twitter.com/Newnews_eu/status/1496739334300614658/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 8,
+      "tag": "UkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 49,
+      "tag": "UkraineCrisis"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 128609351,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 128609352,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 128609353,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 128609354,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 128609355,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 128609356,
+      "conversation_id": "1496739334300614658",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90c9"
+  },
+  "id": "1496739820013604870",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | #Ukrainian interior ministry Advisor Killed in Bomb Attack#Ukraina #UkraineRussie #UkraineRussiaCrisis #UkraineConflict #UkraineCrisis #Putin https://t.co/atv9TYnkGC",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 0,
+  "like_count": 5,
+  "quote_count": 0,
+  "created_at": "2022-02-24T06:52:35+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 7965,
+      "conversation_id": "1496739820013604870",
+      "url": "https://twitter.com/Newnews_eu/status/1496739820013604870/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 1,
+      "tag": "Putin"
+    },
+    {
+      "id": 8,
+      "tag": "UkraineConflict"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 49,
+      "tag": "UkraineCrisis"
+    },
+    {
+      "id": 121,
+      "tag": "Ukrainian"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 37693,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 37694,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 37695,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 37696,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 37697,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 37698,
+      "conversation_id": "1496739820013604870",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90ca"
+  },
+  "id": "1496793553539792897",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | Ukraine: \"We ask Turkey to close the Straits to Russian warships.\"#Ukraina #UkraineRussiaConflict #UkraineRussie #Ukraine #Putin#Russia https://t.co/0KPzON83ar",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 0,
+  "reply_count": 0,
+  "like_count": 9,
+  "quote_count": 0,
+  "created_at": "2022-02-24T10:26:06+00:00",
+  "annotations": [
+    {
+      "id": 103367,
+      "conversation_id": "1496793553539792897",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.959
+    },
+    {
+      "id": 119631,
+      "conversation_id": "1496793553539792897",
+      "value": "Turkey",
+      "type": "Place",
+      "probability": 0.9
+    },
+    {
+      "id": 128183,
+      "conversation_id": "1496793553539792897",
+      "value": "Straits",
+      "type": "Place",
+      "probability": 0.398
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 116059,
+      "conversation_id": "1496793553539792897",
+      "url": "https://twitter.com/Newnews_eu/status/1496793553539792897/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 1,
+      "tag": "Putin"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 10,
+      "tag": "Russia"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 490708,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 490709,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 490710,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 490711,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 490712,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 490713,
+      "conversation_id": "1496793553539792897",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90cb"
+  },
+  "id": "1496795404268146694",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | A #Ukrainian soldier: “We are under intense bombardment. Mommy, daddy, I love you!”#worldwar3 #StopPutin #StopRussianAggression #StopRussia #Ukraina #UkraineRussie #Ukraine https://t.co/kDJYpv89m9",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1064,
+  "reply_count": 117,
+  "like_count": 6240,
+  "quote_count": 147,
+  "created_at": "2022-02-24T10:33:28+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 120691,
+      "conversation_id": "1496795404268146694",
+      "url": "https://twitter.com/Newnews_eu/status/1496795404268146694/video/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 79,
+      "tag": "StopPutin"
+    },
+    {
+      "id": 121,
+      "tag": "Ukrainian"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 680,
+      "tag": "StopRussianAggression"
+    },
+    {
+      "id": 1897,
+      "tag": "StopRussia"
+    }
+  ],
+  "context_annotations": null,
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90cc"
+  },
+  "id": "1496797418108690433",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨 #BREAKING | It is claimed that the Turkish Armed Forces is on high alert.#Ukraina #UkraineRussie #UkraineRussiaCrisis #Russia #RussiaUkraineConflict #StopPutin #StopRussia https://t.co/565MMCTf2I",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 1,
+  "like_count": 6,
+  "quote_count": 0,
+  "created_at": "2022-02-24T10:41:28+00:00",
+  "annotations": [
+    {
+      "id": 107113,
+      "conversation_id": "1496797418108690433",
+      "value": "Turkish Armed Forces",
+      "type": "Organization",
+      "probability": 0.718
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 125695,
+      "conversation_id": "1496797418108690433",
+      "url": "https://twitter.com/Newnews_eu/status/1496797418108690433/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 10,
+      "tag": "Russia"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 79,
+      "tag": "StopPutin"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 1897,
+      "tag": "StopRussia"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 532202,
+      "conversation_id": "1496797418108690433",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90cd"
+  },
+  "id": "1496797932971958274",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | Pictures from the #war #Ukraine #UkraineRussie #UkraineRussiaCrisis #Russia #RussiaUkraineConflict #DurPutin #DurRussia https://t.co/Kaf6BNBtS8",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 28,
+  "reply_count": 2,
+  "like_count": 62,
+  "quote_count": 1,
+  "created_at": "2022-02-24T10:43:31+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 126975,
+      "conversation_id": "1496797932971958274",
+      "url": "https://twitter.com/Newnews_eu/status/1496797932971958274/photo/1",
+      "title": null,
+      "description": null
+    },
+    {
+      "id": 126976,
+      "conversation_id": "1496797932971958274",
+      "url": "https://twitter.com/Newnews_eu/status/1496797932971958274/photo/1",
+      "title": null,
+      "description": null
+    },
+    {
+      "id": 126977,
+      "conversation_id": "1496797932971958274",
+      "url": "https://twitter.com/Newnews_eu/status/1496797932971958274/photo/1",
+      "title": null,
+      "description": null
+    },
+    {
+      "id": 126978,
+      "conversation_id": "1496797932971958274",
+      "url": "https://twitter.com/Newnews_eu/status/1496797932971958274/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 10,
+      "tag": "Russia"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 22,
+      "tag": "war"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 12913,
+      "tag": "DurPutin"
+    },
+    {
+      "id": 12914,
+      "tag": "DurRussia"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 537300,
+      "conversation_id": "1496797932971958274",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be90ce"
+  },
+  "id": "1496799196900327425",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | LPR is claiming that soldiers of the 57th separate motorized infantry brigade of the Ukrainian army have started laying down their weapons and joining the Russian side #Ukraina #Ukraine #UkraineRussie #UkraineConflict #UkraineRussiaCrisis #StopRussianAggression https://t.co/EgkFaPgMvM",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 7,
+  "reply_count": 8,
+  "like_count": 15,
+  "quote_count": 3,
+  "created_at": "2022-02-24T10:48:32+00:00",
+  "annotations": [
+    {
+      "id": 108642,
+      "conversation_id": "1496799196900327425",
+      "value": "LPR",
+      "type": "Organization",
+      "probability": 0.436
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 129981,
+      "conversation_id": "1496799196900327425",
+      "url": "https://twitter.com/Newnews_eu/status/1496799196900327425/video/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 8,
+      "tag": "UkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 680,
+      "tag": "StopRussianAggression"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 549705,
+      "conversation_id": "1496799196900327425",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+}]

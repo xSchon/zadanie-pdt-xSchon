@@ -1,0 +1,1152 @@
+[{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be9125"
+  },
+  "id": "1496967020876910606",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨🚨#BREAKING | Ukrainian Army hits Russian troops advancing to Mariupol. V/ @Haber #RussiaUkraineConflict #RussiaUkraine #UkraineRussie #Ukraine #UkraineRussiaConflict #worldwar3 #NoWar #nowarinukraine https://t.co/Ji9VUC0Ktf",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 10,
+  "reply_count": 3,
+  "like_count": 79,
+  "quote_count": 3,
+  "created_at": "2022-02-24T21:55:24+00:00",
+  "annotations": [
+    {
+      "id": 720747,
+      "conversation_id": "1496967020876910606",
+      "value": "Ukrainian Army",
+      "type": "Organization",
+      "probability": 0.772
+    },
+    {
+      "id": 740755,
+      "conversation_id": "1496967020876910606",
+      "value": "Mariupol",
+      "type": "Place",
+      "probability": 0.501
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 641328,
+      "conversation_id": "1496967020876910606",
+      "url": "https://twitter.com/Newnews_eu/status/1496967020876910606/video/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 59,
+      "tag": "RussiaUkraine"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 4792103,
+      "conversation_id": "1496967020876910606",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 4792104,
+      "conversation_id": "1496967020876910606",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be9126"
+  },
+  "id": "1496972594507100162",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKINGGeneral mobilization declared in #Ukraine.#Ukraine #RussiaUcraina #worldwar3 #UkraineRussie #RussiaUkraineConflict #NoWar https://t.co/qZJVIchFt7",
+  "possibly_sensitive": false,
+  "language": "ro",
+  "source": "Twitter for Android",
+  "retweet_count": 2,
+  "reply_count": 0,
+  "like_count": 10,
+  "quote_count": 0,
+  "created_at": "2022-02-24T22:17:33+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 661331,
+      "conversation_id": "1496972594507100162",
+      "url": "https://twitter.com/Newnews_eu/status/1496972594507100162/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 186,
+      "tag": "RussiaUcraina"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5011855,
+      "conversation_id": "1496972594507100162",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5011856,
+      "conversation_id": "1496972594507100162",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be9127"
+  },
+  "id": "1496979470871371789",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | Pelosi, Speaker of the US House of Representatives: “We want to provide Ukraine with $600 million in deadly defensive weapons.”#Ukraina #Ukraine #UkraineRussie #UkraineRussiaConflict #worldwar3 #NoWar #RussiaUkraineCrisis https://t.co/l602tdbrfx",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 1,
+  "reply_count": 2,
+  "like_count": 16,
+  "quote_count": 0,
+  "created_at": "2022-02-24T22:44:53+00:00",
+  "annotations": [
+    {
+      "id": 783430,
+      "conversation_id": "1496979470871371789",
+      "value": "Pelosi",
+      "type": "Person",
+      "probability": 0.757
+    },
+    {
+      "id": 800505,
+      "conversation_id": "1496979470871371789",
+      "value": "US House",
+      "type": "Place",
+      "probability": 0.657
+    },
+    {
+      "id": 807776,
+      "conversation_id": "1496979470871371789",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.985
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 687231,
+      "conversation_id": "1496979470871371789",
+      "url": "https://twitter.com/Newnews_eu/status/1496979470871371789/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 6,
+      "tag": "RussiaUkraineCrisis"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5296236,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 10,
+      "context_entity_id": "940705992290975744"
+    },
+    {
+      "id": 5296237,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 35,
+      "context_entity_id": "940705992290975744"
+    },
+    {
+      "id": 5296238,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 88,
+      "context_entity_id": "961705302700654593"
+    },
+    {
+      "id": 5296239,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5296240,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 5296241,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "940705992290975744"
+    },
+    {
+      "id": 5296242,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "961705302700654593"
+    },
+    {
+      "id": 5296243,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "1068583660914266113"
+    },
+    {
+      "id": 5296244,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    },
+    {
+      "id": 5296245,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 88,
+      "context_entity_id": "897916387829481472"
+    },
+    {
+      "id": 5296246,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5296247,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 5296248,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "897916387829481472"
+    },
+    {
+      "id": 5296249,
+      "conversation_id": "1496979470871371789",
+      "context_domain_id": 131,
+      "context_entity_id": "1068583660914266113"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be9128"
+  },
+  "id": "1496980010342629376",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨🚨🚨 #BREAKING CNN: \"Russia is expected to begin a massive bombardment of Kiev at 03:00 local time.\"#Ukraina #Ukraine #UkraineRussie #UkraineRussiaConflict #worldwar3 #NoWar #RussiaUkraineCrisis https://t.co/nE2v4J4Vfn",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 8,
+  "reply_count": 2,
+  "like_count": 41,
+  "quote_count": 1,
+  "created_at": "2022-02-24T22:47:01+00:00",
+  "annotations": [
+    {
+      "id": 785131,
+      "conversation_id": "1496980010342629376",
+      "value": "CNN",
+      "type": "Organization",
+      "probability": 0.991
+    },
+    {
+      "id": 801227,
+      "conversation_id": "1496980010342629376",
+      "value": "Russia",
+      "type": "Place",
+      "probability": 0.99
+    },
+    {
+      "id": 808074,
+      "conversation_id": "1496980010342629376",
+      "value": "Kiev",
+      "type": "Place",
+      "probability": 0.891
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 689067,
+      "conversation_id": "1496980010342629376",
+      "url": "https://twitter.com/Newnews_eu/status/1496980010342629376/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 6,
+      "tag": "RussiaUkraineCrisis"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5316570,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5316571,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 47,
+      "context_entity_id": {
+        "$numberLong": "10040667043"
+      }
+    },
+    {
+      "id": 5316572,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5316573,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 131,
+      "context_entity_id": {
+        "$numberLong": "10040667043"
+      }
+    },
+    {
+      "id": 5316574,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 131,
+      "context_entity_id": "1046545033657081857"
+    },
+    {
+      "id": 5316575,
+      "conversation_id": "1496980010342629376",
+      "context_domain_id": 131,
+      "context_entity_id": "1196447117297905665"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be9129"
+  },
+  "id": "1496981263437250562",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | According to Ukrainian official figures, 137 Ukrainian soldiers were killed and 116 wounded.#Ukraina #Ukraine #UkraineRussie #UkraineRussiaConflict #worldwar3 #NoWar #RussiaUkraineCrisis https://t.co/Hkb6DUFdkv",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 3,
+  "reply_count": 0,
+  "like_count": 13,
+  "quote_count": 0,
+  "created_at": "2022-02-24T22:52:00+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 693329,
+      "conversation_id": "1496981263437250562",
+      "url": "https://twitter.com/Newnews_eu/status/1496981263437250562/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 6,
+      "tag": "RussiaUkraineCrisis"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 48,
+      "tag": "UkraineRussiaConflict"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5364122,
+      "conversation_id": "1496981263437250562",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5364123,
+      "conversation_id": "1496981263437250562",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be912a"
+  },
+  "id": "1496985447423045648",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | President of Ukraine Zelensky: “Today I asked 27 European leaders whether Ukraine will join NATO, I directly asked. Everyone is afraid. They are not answering.\"#Ukraine #Ukraina #UkraineRussie #worldwar3 #NoWar #nowarinukraine #RussiaInvadedUkraine https://t.co/QK17mXrWfy",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 61,
+  "reply_count": 16,
+  "like_count": 325,
+  "quote_count": 15,
+  "created_at": "2022-02-24T23:08:37+00:00",
+  "annotations": [
+    {
+      "id": 823007,
+      "conversation_id": "1496985447423045648",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.805
+    },
+    {
+      "id": 851262,
+      "conversation_id": "1496985447423045648",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.995
+    },
+    {
+      "id": 863980,
+      "conversation_id": "1496985447423045648",
+      "value": "NATO",
+      "type": "Organization",
+      "probability": 0.402
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 702459,
+      "conversation_id": "1496985447423045648",
+      "url": "https://twitter.com/Newnews_eu/status/1496985447423045648/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 391,
+      "tag": "RussiaInvadedUkraine"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5465537,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 88,
+      "context_entity_id": "1016738021939351558"
+    },
+    {
+      "id": 5465538,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5465539,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 5465540,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 131,
+      "context_entity_id": "1016738021939351558"
+    },
+    {
+      "id": 5465541,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 131,
+      "context_entity_id": "1068583660914266113"
+    },
+    {
+      "id": 5465542,
+      "conversation_id": "1496985447423045648",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be912b"
+  },
+  "id": "1496986599812485121",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | Zelensky: The enemy has set me as target number one and my family as target number two.#Ukraine #RussiaInvadedUkraine #worldwar3 #NoWar #nowarinukraine #Ukraina #RussiaUkraineConflict #UkraineRussie",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 2,
+  "reply_count": 0,
+  "like_count": 16,
+  "quote_count": 1,
+  "created_at": "2022-02-24T23:13:12+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": null,
+  "hashtags": [
+    {
+      "id": 0,
+      "tag": "Ukraina"
+    },
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 391,
+      "tag": "RussiaInvadedUkraine"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5473520,
+      "conversation_id": "1496986599812485121",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5473521,
+      "conversation_id": "1496986599812485121",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be912c"
+  },
+  "id": "1496988583009603587",
+  "author_id": "1495377954045665283",
+  "content": "⚠️#BREAKING | President of Ukraine Zelensky: \"Ukrainian soldiers on Snake Island were all killed because they refused to surrender. Our soldiers on Snake Island died fighting heroically.”#Ukraine #UkraineRussie #worldwar3 #NoWar #nowarinukraine #RussiaUkraineConflict https://t.co/vxbA7dmqXm",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 99,
+  "reply_count": 17,
+  "like_count": 622,
+  "quote_count": 12,
+  "created_at": "2022-02-24T23:21:05+00:00",
+  "annotations": [
+    {
+      "id": 824563,
+      "conversation_id": "1496988583009603587",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.852
+    },
+    {
+      "id": 852150,
+      "conversation_id": "1496988583009603587",
+      "value": "Snake Island",
+      "type": "Place",
+      "probability": 0.881
+    },
+    {
+      "id": 864418,
+      "conversation_id": "1496988583009603587",
+      "value": "Snake Island",
+      "type": "Place",
+      "probability": 0.726
+    }
+  ],
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 704284,
+      "conversation_id": "1496988583009603587",
+      "url": "https://twitter.com/Newnews_eu/status/1496988583009603587/photo/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 3,
+      "tag": "worldwar3"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5485623,
+      "conversation_id": "1496988583009603587",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5485624,
+      "conversation_id": "1496988583009603587",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be912d"
+  },
+  "id": "1496992794925322246",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | Russian soldier captured in the city of Sum.#Ukrayna #Ukraine #RussiaUkraineConflict #Putin #UkraineRussiaCrisis #NoWar #nowarinukraine #UkraineRussie https://t.co/gtIGWdHzOF",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 7,
+  "reply_count": 3,
+  "like_count": 25,
+  "quote_count": 1,
+  "created_at": "2022-02-24T23:37:49+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 710436,
+      "conversation_id": "1496992794925322246",
+      "url": "https://twitter.com/Newnews_eu/status/1496992794925322246/video/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 1,
+      "tag": "Putin"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 21,
+      "tag": "UkraineRussie"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 45,
+      "tag": "NoWar"
+    },
+    {
+      "id": 131,
+      "tag": "Ukrayna"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5558507,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5558508,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5558509,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5558510,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5558511,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 5558512,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5558513,
+      "conversation_id": "1496992794925322246",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+},{
+  "_id": {
+    "$oid": "63a71fd9a94fb2e710be912e"
+  },
+  "id": "1496994513444913152",
+  "author_id": "1495377954045665283",
+  "content": "⚠️🚨#BREAKING | Clashes continue in Sum.#Ukraine #UkraineRussiaCrisis #UkraineRussiaCrisis #Russia #RussiaUkraineConflict #RussiaUkraineCrisis #Putin #nowarinukraine https://t.co/bwzDx3zTLT",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter for Android",
+  "retweet_count": 3,
+  "reply_count": 0,
+  "like_count": 13,
+  "quote_count": 0,
+  "created_at": "2022-02-24T23:44:39+00:00",
+  "annotations": null,
+  "authors": {
+    "id": "1495377954045665283",
+    "name": "New News EU 🔴",
+    "username": "Newnews_eu",
+    "description": "Independent Media",
+    "tweet_count": 1732,
+    "listed_count": 36,
+    "followers_count": 3323,
+    "following_count": 1
+  },
+  "links": [
+    {
+      "id": 715660,
+      "conversation_id": "1496994513444913152",
+      "url": "https://twitter.com/Newnews_eu/status/1496994513444913152/video/1",
+      "title": null,
+      "description": null
+    }
+  ],
+  "hashtags": [
+    {
+      "id": 1,
+      "tag": "Putin"
+    },
+    {
+      "id": 5,
+      "tag": "RussiaUkraineConflict"
+    },
+    {
+      "id": 6,
+      "tag": "RussiaUkraineCrisis"
+    },
+    {
+      "id": 9,
+      "tag": "Ukraine"
+    },
+    {
+      "id": 10,
+      "tag": "Russia"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 24,
+      "tag": "UkraineRussiaCrisis"
+    },
+    {
+      "id": 157,
+      "tag": "BREAKING"
+    },
+    {
+      "id": 926,
+      "tag": "nowarinukraine"
+    }
+  ],
+  "context_annotations": [
+    {
+      "id": 5619763,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5619764,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5619765,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5619766,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 5619767,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 5619768,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 5619769,
+      "conversation_id": "1496994513444913152",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": null
+  }
+}]

@@ -1,0 +1,195 @@
+{
+  "_id": {
+    "$oid": "63a70959a94fb2e710b364f3"
+  },
+  "id": "1496947364975677442",
+  "author_id": 352,
+  "content": "RT @TomPietri: I support Ukraine as they stand against Putin's invasion. I will be contactmy reps to urge the harshest sanctions for Russ…",
+  "possibly_sensitive": false,
+  "language": "en",
+  "source": "Twitter Web App",
+  "retweet_count": 1,
+  "reply_count": 0,
+  "like_count": 0,
+  "quote_count": 0,
+  "created_at": "2022-02-24T20:37:18+00:00",
+  "annotations": [
+    {
+      "id": 619525,
+      "conversation_id": "1496947364975677442",
+      "value": "Ukraine",
+      "type": "Place",
+      "probability": 0.989
+    },
+    {
+      "id": 638874,
+      "conversation_id": "1496947364975677442",
+      "value": "Putin",
+      "type": "Person",
+      "probability": 0.972
+    },
+    {
+      "id": 647832,
+      "conversation_id": "1496947364975677442",
+      "value": "Russ",
+      "type": "Person",
+      "probability": 0.828
+    }
+  ],
+  "authors": {
+    "id": 352,
+    "name": "William",
+    "username": "william",
+    "description": "Antisexist, antiracist, antijerk. Sassmouth, nosyparker, busybody. (And you're probably looking for @iamwill or @WilliamsRuto.) opinions all mine. He or they.",
+    "tweet_count": 6422,
+    "listed_count": 75,
+    "followers_count": 790,
+    "following_count": 1025
+  },
+  "links": null,
+  "hashtags": null,
+  "context_annotations": [
+    {
+      "id": 4032361,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 4032362,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 10,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 4032363,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 35,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 4032364,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 123,
+      "context_entity_id": "1484601166080081920"
+    },
+    {
+      "id": 4032365,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 131,
+      "context_entity_id": "847878884917886977"
+    },
+    {
+      "id": 4032366,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 131,
+      "context_entity_id": "864931126132985856"
+    },
+    {
+      "id": 4032367,
+      "conversation_id": "1496947364975677442",
+      "context_domain_id": 131,
+      "context_entity_id": "1070032753834438656"
+    }
+  ],
+  "conversation_references": {
+    "json_agg": [
+      {
+        "type": "retweeted",
+        "hashtags": null,
+        "context_annotations": [
+          {
+            "id": 128891769,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 123,
+            "context_entity_id": "1484601166080081920"
+          },
+          {
+            "id": 128891770,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 10,
+            "context_entity_id": "864931126132985856"
+          },
+          {
+            "id": 128891771,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 35,
+            "context_entity_id": "864931126132985856"
+          },
+          {
+            "id": 128891772,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 131,
+            "context_entity_id": "847878884917886977"
+          },
+          {
+            "id": 128891773,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 131,
+            "context_entity_id": "864931126132985856"
+          },
+          {
+            "id": 128891774,
+            "conversation_id": "1496843300854190084",
+            "context_domain_id": 131,
+            "context_entity_id": "1070032753834438656"
+          }
+        ],
+        "authors": {
+          "id": 352,
+          "name": "William",
+          "username": "william",
+          "description": "Antisexist, antiracist, antijerk. Sassmouth, nosyparker, busybody. (And you're probably looking for @iamwill or @WilliamsRuto.) opinions all mine. He or they.",
+          "tweet_count": 6422,
+          "listed_count": 75,
+          "followers_count": 790,
+          "following_count": 1025
+        },
+        "conversations": {
+          "id": "1496843300854190084",
+          "author_id": 754034502,
+          "content": "I support Ukraine as they stand against Putin's invasion. I will be contactmy reps to urge the harshest sanctions for Russia and the strongest possible support of Ukraine, including more and more lethal aid. But let's remember who bears the suffering in war: civilians. https://t.co/eC2oJJWP8h",
+          "possibly_sensitive": false,
+          "language": "en",
+          "source": "Twitter for Android",
+          "retweet_count": 1,
+          "reply_count": 0,
+          "like_count": 1,
+          "quote_count": 0,
+          "created_at": "2022-02-24T13:43:47+00:00"
+        },
+        "links": null,
+        "annotations": [
+          {
+            "id": 18254011,
+            "conversation_id": "1496843300854190084",
+            "value": "Ukraine",
+            "type": "Place",
+            "probability": 0.99
+          },
+          {
+            "id": 18287662,
+            "conversation_id": "1496843300854190084",
+            "value": "Putin",
+            "type": "Person",
+            "probability": 0.965
+          },
+          {
+            "id": 18307248,
+            "conversation_id": "1496843300854190084",
+            "value": "Russia",
+            "type": "Place",
+            "probability": 0.999
+          },
+          {
+            "id": 18317864,
+            "conversation_id": "1496843300854190084",
+            "value": "Ukraine",
+            "type": "Place",
+            "probability": 0.998
+          }
+        ]
+      }
+    ]
+  }
+}
